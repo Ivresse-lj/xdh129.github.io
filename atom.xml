@@ -1,0 +1,391 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Xdh129&#39;s Hexo</title>
+  
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="https://xdh129.github.io/"/>
+  <updated>2019-10-22T00:03:34.391Z</updated>
+  <id>https://xdh129.github.io/</id>
+  
+  <author>
+    <name>Xdh129</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="https://xdh129.github.io/2017/06/17/hello-world-hexo/"/>
+    <id>https://xdh129.github.io/2017/06/17/hello-world-hexo/</id>
+    <published>2017-06-17T00:00:00.000Z</published>
+    <updated>2019-10-22T00:03:34.391Z</updated>
+    
+    <content type="html"><![CDATA[<p>现已迁移至Hexo，一个轻量级的开源博客框架。<br>From now on we’re running on Hexo, a lighter &amp; powerful open-source blog framework powered by Node.js.<br>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;现已迁移至Hexo，一个轻量级的开源博客框架。&lt;br&gt;From now on we’re running on Hexo, a lighter &amp;amp; powerful open-source blog framework powered by Node.js.&lt;br&gt;
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>此博客将暂停更新一段时间</title>
+    <link href="https://xdh129.github.io/2014/01/04/stop-updating/"/>
+    <id>https://xdh129.github.io/2014/01/04/stop-updating/</id>
+    <published>2014-01-04T05:56:21.000Z</published>
+    <updated>2019-10-21T23:55:45.627Z</updated>
+    
+    <content type="html"><![CDATA[<p>博主决定以后将把自己的个人日记记在本机上，在这里博主也推荐一个记日记的软件，叫eDiary，对于记日记来说完全够用了。以后博主将会将大部分重心放在记本机日记上，不再更新此博客。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;博主决定以后将把自己的个人日记记在本机上，在这里博主也推荐一个记日记的软件，叫eDiary，对于记日记来说完全够用了。以后博主将会将大部分重心放在记本机日记上，不再更新此博客。&lt;/p&gt;
+
+      
+    
+    </summary>
+    
+    
+      <category term="心灵日记" scheme="https://xdh129.github.io/categories/%E5%BF%83%E7%81%B5%E6%97%A5%E8%AE%B0/"/>
+    
+      <category term="软件分享" scheme="https://xdh129.github.io/categories/%E5%BF%83%E7%81%B5%E6%97%A5%E8%AE%B0/%E8%BD%AF%E4%BB%B6%E5%88%86%E4%BA%AB/"/>
+    
+    
+      <category term="停止" scheme="https://xdh129.github.io/tags/%E5%81%9C%E6%AD%A2/"/>
+    
+      <category term="日记" scheme="https://xdh129.github.io/tags/%E6%97%A5%E8%AE%B0/"/>
+    
+      <category term="更新" scheme="https://xdh129.github.io/tags/%E6%9B%B4%E6%96%B0/"/>
+    
+      <category term="软件" scheme="https://xdh129.github.io/tags/%E8%BD%AF%E4%BB%B6/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>使用带有离线下载功能的网盘转存Youtube视频教程</title>
+    <link href="https://xdh129.github.io/2013/08/27/download-youtube-videos-to-domestic-online-disk/"/>
+    <id>https://xdh129.github.io/2013/08/27/download-youtube-videos-to-domestic-online-disk/</id>
+    <published>2013-08-27T08:49:09.000Z</published>
+    <updated>2019-10-21T23:55:45.627Z</updated>
+    
+    <content type="html"><![CDATA[<p>有时，我们看到喜欢的Youtube视频，需要把它转存至国内网盘，但却因为网络问题，无法快速上传/下载视频。没关系，这里有一个不需要本地下载Youtube视频即可将它存至国内网盘的办法。（此方法的主要目的不是下载Youtube视频，而是转存视频至国内网盘） 需要：一枚有离线下载功能的网盘的帐号 1.进入<a href="http://unrestrict.li/download，将想下载的u2b视频的地址粘贴进输入框中。然后点击“Unrestrict" target="_blank" rel="noopener">http://unrestrict.li/download，将想下载的u2b视频的地址粘贴进输入框中。然后点击“Unrestrict</a> links!”。得到一排链接 <a href="http://Zyu.0zed.com/wp-content/uploads/2013/08/89999546.png" target="_blank" rel="noopener"><img src="http://Zyu.0zed.com/wp-content/uploads/2013/08/89999546.png" alt="89999546"></a>   2.下面出现的这些链接是这个视频不同清晰度的下载地址，选择自己需要的那个（注意分辨率和文件后缀名），点击左边的“Download” 3.出现一个文件下载页面，我们按照提示输入验证码，如看不清，点击输入框右边的旋转图标，输入完后，点击下面的“Download” <a href="http://Zyu.0zed.com/wp-content/uploads/2013/08/7777777771466.png" target="_blank" rel="noopener"><img src="http://Zyu.0zed.com/wp-content/uploads/2013/08/7777777771466.png" alt="7777777771466"></a> 4.出现了真正的文件下载页面，不要直接点击，右键复制它的链接即可 <a href="http://Zyu.0zed.com/wp-content/uploads/2013/08/777777.png" target="_blank" rel="noopener"><img src="http://Zyu.0zed.com/wp-content/uploads/2013/08/777777.png" alt="777777"></a> PS：这时还不能直接进入网盘，直接离线下载，因为直接使用此链接离线下载，网盘会提示“地址中含有非法字符”或“参数错误”(BUG) 5.百度搜索“短链接”，点击顶部的第一个应用“网址缩短” <a href="http://Zyu.0zed.com/wp-content/uploads/2013/08/1255646.png" target="_blank" rel="noopener"><img src="http://Zyu.0zed.com/wp-content/uploads/2013/08/1255646.png" alt="1255646"></a> 6.在输入框中粘贴网址，点击右边的“缩短”，得到下面出现的缩短后链接，复制它 <a href="http://Zyu.0zed.com/wp-content/uploads/2013/08/5555555.png" target="_blank" rel="noopener"><img src="http://Zyu.0zed.com/wp-content/uploads/2013/08/5555555.png" alt="5555555"></a> 7.大功告成，现在就可以进入网盘，新建离线下载任务，粘贴刚得到的链接，进行离线下载了 看来速度还行 <a href="http://Zyu.0zed.com/wp-content/uploads/2013/08/46546494564.png" target="_blank" rel="noopener"><img src="http://Zyu.0zed.com/wp-content/uploads/2013/08/46546494564.png" alt="46546494564"></a> PS：使用360云盘进行离线下载肯定会出现下面的情况，不需要担心，等到离线下载完成后文件大小会自动改变的 <a href="http://Zyu.0zed.com/wp-content/uploads/2013/08/54658654.png" target="_blank" rel="noopener"><img src="http://Zyu.0zed.com/wp-content/uploads/2013/08/54658654.png" alt="54658654"></a>   =============================================== 注意，离线下载完成后记得改文件名   本文同样发布在卡饭上：<a href="http://bbs.kafan.cn/thread-1619457-1-1.html" target="_blank" rel="noopener">http://bbs.kafan.cn/thread-1619457-1-1.html</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;有时，我们看到喜欢的Youtube视频，需要把它转存至国内网盘，但却因为网络问题，无法快速上传/下载视频。没关系，这里有一个不需要本地下载Youtube视频即可将它存至国内网盘的办法。（此方法的主要目的不是下载Youtube视频，而是转存视频至国内网盘） 需要：一枚有离线下
+      
+    
+    </summary>
+    
+    
+      <category term="原创教程" scheme="https://xdh129.github.io/categories/%E5%8E%9F%E5%88%9B%E6%95%99%E7%A8%8B/"/>
+    
+    
+      <category term="Youtube" scheme="https://xdh129.github.io/tags/Youtube/"/>
+    
+      <category term="下载" scheme="https://xdh129.github.io/tags/%E4%B8%8B%E8%BD%BD/"/>
+    
+      <category term="网盘" scheme="https://xdh129.github.io/tags/%E7%BD%91%E7%9B%98/"/>
+    
+      <category term="视频" scheme="https://xdh129.github.io/tags/%E8%A7%86%E9%A2%91/"/>
+    
+      <category term="转存" scheme="https://xdh129.github.io/tags/%E8%BD%AC%E5%AD%98/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>已通关游戏列表</title>
+    <link href="https://xdh129.github.io/2013/08/25/complete-the-game-list/"/>
+    <id>https://xdh129.github.io/2013/08/25/complete-the-game-list/</id>
+    <published>2013-08-25T08:49:50.000Z</published>
+    <updated>2019-10-21T23:55:45.627Z</updated>
+    
+    <content type="html"><![CDATA[<p>博主家的电脑是一台古董机，因此很多游戏都玩不了/痛苦。但是自从有了云游戏，让博主的电脑玩上了许多原本因配置原因玩不了的游戏。 废话不多说，下面列出我所有通关过的游戏： 1.双星物语2（本机）-APRG 2.疯狂农场2（本机）-SLG PS：貌似有很多英文游戏都用这个译名，这个游戏的原名是Mania Farm 2 3.超级马里奥1（FC模拟器）-ACT 4.孤岛惊魂3（云游戏）-FPS 5.孤岛危机2（云游戏）-FPS 6.植物大战僵尸（本机）-PUZ 7.上古卷轴5（云游戏）-ARPG-未玩任何DLC-玩时已作弊:无敌+全技能+全技能点+各种物品、金钱get 8.魔兽争霸3（本机）-RTS-神作，绝对经典 9.泰坦尼克:宿命旅行（本机）-PUZ-这游戏不错！ 10. 放上古董机配置： AIDA64 检测报告： <a href="http://Zyu.0zed.com/attplus/AIDA64" target="_blank" rel="noopener">http://Zyu.0zed.com/attplus/AIDA64</a> 3.00.2578 Beta.htm   ================分隔线================ 另外，我的手机CPU是armv5te架构的，因此注定和这台古董机一样，同样是很多游戏都玩不了 已通关游戏列表： 暂时木有，基本都只玩到一半 这里是手机详细配置： 型号：ZTE-U880E CPU：Marvell PXA920H（armv5te） GPU：Vivante GC530 RAM：436M ================分隔线================ 这里是博主未通关，觉得精品的游戏 1.耻辱（在云游戏玩到一半，-玩到被自己的朋友背叛的剧情，被好心船夫送到某地-，结果存档不见了，不见了） 2.狂野飙车6、7、8代 -手机（确实不错）</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;博主家的电脑是一台古董机，因此很多游戏都玩不了/痛苦。但是自从有了云游戏，让博主的电脑玩上了许多原本因配置原因玩不了的游戏。 废话不多说，下面列出我所有通关过的游戏： 1.双星物语2（本机）-APRG 2.疯狂农场2（本机）-SLG PS：貌似有很多英文游戏都用这个译名，这
+      
+    
+    </summary>
+    
+    
+      <category term="心灵日记" scheme="https://xdh129.github.io/categories/%E5%BF%83%E7%81%B5%E6%97%A5%E8%AE%B0/"/>
+    
+    
+      <category term="云游戏" scheme="https://xdh129.github.io/tags/%E4%BA%91%E6%B8%B8%E6%88%8F/"/>
+    
+      <category term="游戏" scheme="https://xdh129.github.io/tags/%E6%B8%B8%E6%88%8F/"/>
+    
+      <category term="AIDA64" scheme="https://xdh129.github.io/tags/AIDA64/"/>
+    
+      <category term="armv5" scheme="https://xdh129.github.io/tags/armv5/"/>
+    
+      <category term="低配机的愤怒" scheme="https://xdh129.github.io/tags/%E4%BD%8E%E9%85%8D%E6%9C%BA%E7%9A%84%E6%84%A4%E6%80%92/"/>
+    
+      <category term="低配置" scheme="https://xdh129.github.io/tags/%E4%BD%8E%E9%85%8D%E7%BD%AE/"/>
+    
+      <category term="列表" scheme="https://xdh129.github.io/tags/%E5%88%97%E8%A1%A8/"/>
+    
+      <category term="梦想" scheme="https://xdh129.github.io/tags/%E6%A2%A6%E6%83%B3/"/>
+    
+      <category term="通关" scheme="https://xdh129.github.io/tags/%E9%80%9A%E5%85%B3/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>360云盘升级 超440GB永久免费+离线下载+文件加密+在线播放+无限分享流量+群共享+秒传</title>
+    <link href="https://xdh129.github.io/2013/08/22/get-360-yunpan-storage-space/"/>
+    <id>https://xdh129.github.io/2013/08/22/get-360-yunpan-storage-space/</id>
+    <published>2013-08-22T04:06:48.000Z</published>
+    <updated>2019-10-21T23:55:45.627Z</updated>
+    
+    <content type="html"><![CDATA[<p>超过440G云盘免费永久空间领取教程： <a href="http://e.weibo.com/2420259703/A5B0QcQ29" target="_blank" rel="noopener">http://e.weibo.com/2420259703/A5B0QcQ29</a> 360G地址：<a href="http://huodong.yunpan.360.cn/na360g" target="_blank" rel="noopener">http://huodong.yunpan.360.cn/na360g</a> 手机卫士5G+27G地址：<a href="http://bbs.360safe.com/thread-2210439-1-1.html" target="_blank" rel="noopener">http://bbs.360safe.com/thread-2210439-1-1.html</a> 360搜索 36G地址： <a href="http://www.so.com/holiday/816.html" target="_blank" rel="noopener">http://www.so.com/holiday/816.html</a> ======================================================= 简单任务440G到手，如还需要更大免费空间 可以参加以下活动： 例如在360手机助手软件特权栏目中安装360一些移动端应用 也可以获取几G空间，做完之后 450G永久免费空间不是梦。 还有安全卫士等级特权赠送云盘空间，目前一共累计赠送15G（各等级特权） 以及云盘自身等级特权赠送空间，也是一共几十G 全部搞定后+每日抽奖空间 总计会达到500G+。 还有一个1024G任务：<a href="http://huodong.yunpan.360.cn/" target="_blank" rel="noopener">http://huodong.yunpan.360.cn/</a> 此文转自：<a href="http://bbs.kafan.cn/thread-1616502-1-1.html" target="_blank" rel="noopener">http://bbs.kafan.cn/thread-1616502-1-1.html</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;超过440G云盘免费永久空间领取教程： &lt;a href=&quot;http://e.weibo.com/2420259703/A5B0QcQ29&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;http://e.weibo.com/2420259703/A5B0Qc
+      
+    
+    </summary>
+    
+    
+      <category term="杂物分享" scheme="https://xdh129.github.io/categories/%E6%9D%82%E7%89%A9%E5%88%86%E4%BA%AB/"/>
+    
+    
+      <category term="360" scheme="https://xdh129.github.io/tags/360/"/>
+    
+      <category term="云盘" scheme="https://xdh129.github.io/tags/%E4%BA%91%E7%9B%98/"/>
+    
+      <category term="免费" scheme="https://xdh129.github.io/tags/%E5%85%8D%E8%B4%B9/"/>
+    
+      <category term="存储空间" scheme="https://xdh129.github.io/tags/%E5%AD%98%E5%82%A8%E7%A9%BA%E9%97%B4/"/>
+    
+      <category term="扩容" scheme="https://xdh129.github.io/tags/%E6%89%A9%E5%AE%B9/"/>
+    
+      <category term="竞争" scheme="https://xdh129.github.io/tags/%E7%AB%9E%E4%BA%89/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>7.31-8.2 誓与作业一战！！！！</title>
+    <link href="https://xdh129.github.io/2013/07/31/7-31-8-2-master-homework-battle/"/>
+    <id>https://xdh129.github.io/2013/07/31/7-31-8-2-master-homework-battle/</id>
+    <published>2013-07-31T09:33:55.000Z</published>
+    <updated>2019-10-21T23:55:45.627Z</updated>
+    
+    <content type="html"><![CDATA[<p>苦逼学生党8.3要去交作业啊啊啊啊啊啊啊啊，作业还差一大半啊啊啊，所以这几天一定要把作业全写完，即使是通宵我也不在乎啊/去死。。。 作业完成进度========complete homework 语文–通宵完成。。。 数学–两天搞定。。。 英语–花了一个下午。。。终于写完了。。。 历史–借助网络的力量，N小时搞定。。呼呼 还好在交之前搞定了。。。不过这作业质量吗。。。就差得多了= = 所以作业一定要提前写啊。。。反正迟早都要写的，不然拖到后面写都写不完啊。。。我就是一个惨痛的活生生的例子 ==================分隔线================== 8.3日及以后作业完成进度-HC 语文–写完鸟<del>心情各种舒畅</del> 数学–作业中最多的就是它了。。。真是让人痛苦 英语–某万恶的海报。。。。终于画完了 历史–两张卷子已搞定 物理–终于写完了，好多啊 ==================分隔线================== 完成作业后感言：–作业不要拖着写啊。。。不然你到假期还剩二十天左右的时候会很痛苦的</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;苦逼学生党8.3要去交作业啊啊啊啊啊啊啊啊，作业还差一大半啊啊啊，所以这几天一定要把作业全写完，即使是通宵我也不在乎啊/去死。。。 作业完成进度========complete homework 语文–通宵完成。。。 数学–两天搞定。。。 英语–花了一个下午。。。终于写完了
+      
+    
+    </summary>
+    
+    
+      <category term="心灵日记" scheme="https://xdh129.github.io/categories/%E5%BF%83%E7%81%B5%E6%97%A5%E8%AE%B0/"/>
+    
+    
+      <category term="作业" scheme="https://xdh129.github.io/tags/%E4%BD%9C%E4%B8%9A/"/>
+    
+      <category term="去死吧作业" scheme="https://xdh129.github.io/tags/%E5%8E%BB%E6%AD%BB%E5%90%A7%E4%BD%9C%E4%B8%9A/"/>
+    
+      <category term="学生" scheme="https://xdh129.github.io/tags/%E5%AD%A6%E7%94%9F/"/>
+    
+      <category term="战斗" scheme="https://xdh129.github.io/tags/%E6%88%98%E6%96%97/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>关于7.28-29的爆吧</title>
+    <link href="https://xdh129.github.io/2013/07/30/about-baidu-tieba-attack/"/>
+    <id>https://xdh129.github.io/2013/07/30/about-baidu-tieba-attack/</id>
+    <published>2013-07-30T13:56:23.000Z</published>
+    <updated>2019-10-21T23:55:45.627Z</updated>
+    
+    <content type="html"><![CDATA[<p>首回合权志龙爆吧行动高潮已经散去，据不完全统计，截止7月29日上午09.45分，各俱乐部国家队共出动参战部队258万人次，其中李毅吧遥遥领先出动66万人次，其次皇家马德里：39万人次，巴塞罗那36万。拜仁慕尼黑28万。米兰双雄27万。切尔西15万。其他粉丝吧出动47万人次！这个数字超越了第二次世界大战德军闪击波兰和日本侵略中国的部队人数总和！共发帖1756万条。阵亡小号无数。感谢权志龙！让我们德比死敌空前的团结一致！敬礼！</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;首回合权志龙爆吧行动高潮已经散去，据不完全统计，截止7月29日上午09.45分，各俱乐部国家队共出动参战部队258万人次，其中李毅吧遥遥领先出动66万人次，其次皇家马德里：39万人次，巴塞罗那36万。拜仁慕尼黑28万。米兰双雄27万。切尔西15万。其他粉丝吧出动47万人次！
+      
+    
+    </summary>
+    
+    
+      <category term="新鲜事" scheme="https://xdh129.github.io/categories/%E6%96%B0%E9%B2%9C%E4%BA%8B/"/>
+    
+    
+      <category term="攻击" scheme="https://xdh129.github.io/tags/%E6%94%BB%E5%87%BB/"/>
+    
+      <category term="明星" scheme="https://xdh129.github.io/tags/%E6%98%8E%E6%98%9F/"/>
+    
+      <category term="爆吧" scheme="https://xdh129.github.io/tags/%E7%88%86%E5%90%A7/"/>
+    
+      <category term="百度" scheme="https://xdh129.github.io/tags/%E7%99%BE%E5%BA%A6/"/>
+    
+      <category term="足球" scheme="https://xdh129.github.io/tags/%E8%B6%B3%E7%90%83/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>JQ无国界！外国Fans绘制《刺客信条》同人图赏（慎入）</title>
+    <link href="https://xdh129.github.io/2013/07/23/assassins-creed-gameparos/"/>
+    <id>https://xdh129.github.io/2013/07/23/assassins-creed-gameparos/</id>
+    <published>2013-07-23T08:03:54.000Z</published>
+    <updated>2019-10-21T23:55:45.627Z</updated>
+    
+    <content type="html"><![CDATA[<p>近来，国外一名叫做doubleleaf的《刺客信条》的忠实玩家创作了一组《刺客信条》游戏系列的同人画作。从画作的内容看来，如果这位作者在中国，应该会被称作是“腐女”吧……画作的内容十分劲暴，恶搞的基情趣味十足，作者更是画功深厚，用笔细腻，赶紧让我们来欣赏一下吧！ （来源：<a href="http://www.gamersky.com/news/201102/170433.shtml" target="_blank" rel="noopener">http://www.gamersky.com/news/201102/170433.shtml</a>） =============以上为转载游民星空内容=============   这位作者画的图轻度不和谐，内带JQ，所以我在这里就不贴出那些奇怪的部分了。 我把图集打包了下来，上传到了网盘上，腐女自行观看吧（18X，慎入）   百度网盘下载链接：<a href="http://pan.baidu.com/share/link?shareid=1138159646&amp;uk=924176178" target="_blank" rel="noopener">http://pan.baidu.com/share/link?shareid=1138159646&amp;uk=924176178</a> 作者：doubleleaf         作者网站：<a href="http://doubleleaf.deviantart.com/" target="_blank" rel="noopener">http://doubleleaf.deviantart.com/</a>   <a href="http://Zyu.0zed.com/wp-content/uploads/2013/07/bh_des_by_doubleleaf.jpg" target="_blank" rel="noopener"><img src="http://Zyu.0zed.com/wp-content/uploads/2013/07/bh_des_by_doubleleaf-265x300.jpg" alt="bh_des_by_doubleleaf"></a>   <a href="http://Zyu.0zed.com/wp-content/uploads/2013/07/Malik_giving_a_wink_by_doubleleaf.jpg" target="_blank" rel="noopener"><img src="http://Zyu.0zed.com/wp-content/uploads/2013/07/Malik_giving_a_wink_by_doubleleaf-227x300.jpg" alt="Malik_giving_a_wink_by_doubleleaf"></a>   <a href="http://Zyu.0zed.com/wp-content/uploads/2013/07/Altair_by_doubleleaf.jpg" target="_blank" rel="noopener"><img src="http://Zyu.0zed.com/wp-content/uploads/2013/07/Altair_by_doubleleaf-212x300.jpg" alt="Altair_by_doubleleaf"></a>   <a href="http://Zyu.0zed.com/wp-content/uploads/2013/07/escape_mashaf_by_doubleleaf.jpg" target="_blank" rel="noopener"><img src="http://Zyu.0zed.com/wp-content/uploads/2013/07/escape_mashaf_by_doubleleaf-257x300.jpg" alt="escape_mashaf_by_doubleleaf"></a>     PS：画得真的不错啊，赞一个~</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;近来，国外一名叫做doubleleaf的《刺客信条》的忠实玩家创作了一组《刺客信条》游戏系列的同人画作。从画作的内容看来，如果这位作者在中国，应该会被称作是“腐女”吧……画作的内容十分劲暴，恶搞的基情趣味十足，作者更是画功深厚，用笔细腻，赶紧让我们来欣赏一下吧！ （来源：&lt;
+      
+    
+    </summary>
+    
+    
+      <category term="杂物分享" scheme="https://xdh129.github.io/categories/%E6%9D%82%E7%89%A9%E5%88%86%E4%BA%AB/"/>
+    
+    
+      <category term="18X" scheme="https://xdh129.github.io/tags/18X/"/>
+    
+      <category term="刺客" scheme="https://xdh129.github.io/tags/%E5%88%BA%E5%AE%A2/"/>
+    
+      <category term="刺客信条" scheme="https://xdh129.github.io/tags/%E5%88%BA%E5%AE%A2%E4%BF%A1%E6%9D%A1/"/>
+    
+      <category term="同人" scheme="https://xdh129.github.io/tags/%E5%90%8C%E4%BA%BA/"/>
+    
+      <category term="图集" scheme="https://xdh129.github.io/tags/%E5%9B%BE%E9%9B%86/"/>
+    
+      <category term="基情" scheme="https://xdh129.github.io/tags/%E5%9F%BA%E6%83%85/"/>
+    
+      <category term="插画" scheme="https://xdh129.github.io/tags/%E6%8F%92%E7%94%BB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>感叹一下云游戏的陨落。。。</title>
+    <link href="https://xdh129.github.io/2013/07/22/about-cloudunion/"/>
+    <id>https://xdh129.github.io/2013/07/22/about-cloudunion/</id>
+    <published>2013-07-22T09:38:26.000Z</published>
+    <updated>2019-10-21T23:55:45.627Z</updated>
+    
+    <content type="html"><![CDATA[<p>[caption id=”attachment_18” align=”alignnone” width=”242”]<a href="http://Zyu.0zed.com/wp-content/uploads/2013/07/cloudunion.png" target="_blank" rel="noopener"><img src="http://Zyu.0zed.com/wp-content/uploads/2013/07/cloudunion.png" alt="官网logo"></a> 官网logo[/caption] 云游戏，传说中中国最专业的云游戏平台“云联科技”。根据官方的介绍，通过“云游戏”这个平台，你根本无需下载，只需像看电影在线点播那样，稍等瞬间就开始在线玩体积超过10G的超大型3D游戏！而且即便你的电脑只有性能很一般的集成显卡，内存CPU硬盘空间神马的很吃紧，也能流畅地体验最新的/配置要求特别BT的3D新游戏，无需安装，无需配置，非常简单。可谓是低配置、怕麻烦玩家们的福音。（此段文字引自<a href="http://www.iplaysoft.com/yxyun.html" target="_blank" rel="noopener">异次元软件世界</a>） 我曾经在云游戏中成功将耻辱，上古卷轴5，孤岛危机2和孤岛惊魂3通关。云游戏内游戏均限帧在25fps内，因此游戏的流畅度还是不错的，操作延迟也比较低。只是画面会受到网速波动的影响，时常有抖动的模糊现象出现。但是，这对于性能低的PC来说，都不是问题。云游戏服务器的配置也是非常不错的，以下附图。（PS：还有一张云游戏中运行街头霸王X铁拳内benchmark结果的图我找不到了 /捂脸） <a href="http://Zyu.0zed.com/wp-content/uploads/2013/07/benchmark2.jpg" target="_blank" rel="noopener"><img src="http://Zyu.0zed.com/wp-content/uploads/2013/07/benchmark2-300x143.jpg" alt="benchmark2"></a><a href="http://Zyu.0zed.com/wp-content/uploads/2013/07/benchmark1.jpg" target="_blank" rel="noopener"><img src="http://Zyu.0zed.com/wp-content/uploads/2013/07/benchmark1-300x245.jpg" alt="benchmark1"></a>     自从云游戏中某网游上架后（1月13日），引来了大量的用户，其中不乏各种学生，参观者，试玩者，一度导致服务器亚历山大，于是云游戏官方经常不得不以维护的名义关闭此游戏，以减轻压力。 但是在从6月28日后，云游戏官方客服通通消失了，与此同时也关闭了大量的服务器，据说是云联经营不善，濒临破产（未经证实）    来源：<a href="http://cio.it168.com/a2013/0711/1506/000001506270.shtml" target="_blank" rel="noopener">http://cio.it168.com/a2013/0711/1506/000001506270.shtml</a>   唉，如今的云游戏，真是不如以前了。。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;[caption id=”attachment_18” align=”alignnone” width=”242”]&lt;a href=&quot;http://Zyu.0zed.com/wp-content/uploads/2013/07/cloudunion.png&quot; target=
+      
+    
+    </summary>
+    
+    
+      <category term="心灵日记" scheme="https://xdh129.github.io/categories/%E5%BF%83%E7%81%B5%E6%97%A5%E8%AE%B0/"/>
+    
+    
+      <category term="云" scheme="https://xdh129.github.io/tags/%E4%BA%91/"/>
+    
+      <category term="云游戏" scheme="https://xdh129.github.io/tags/%E4%BA%91%E6%B8%B8%E6%88%8F/"/>
+    
+      <category term="关闭" scheme="https://xdh129.github.io/tags/%E5%85%B3%E9%97%AD/"/>
+    
+      <category term="游戏" scheme="https://xdh129.github.io/tags/%E6%B8%B8%E6%88%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>分享一首歌 - 威风堂々</title>
+    <link href="https://xdh129.github.io/2013/07/21/share-a-song-chivalry/"/>
+    <id>https://xdh129.github.io/2013/07/21/share-a-song-chivalry/</id>
+    <published>2013-07-21T03:54:10.000Z</published>
+    <updated>2019-10-21T23:55:45.627Z</updated>
+    
+    <content type="html"><![CDATA[<p>这首歌的歌词虽然挺不和谐的。。不过听起来还是挺带感的。。赞一个。。 女声版：<a href="http://fc.5sing.com/8295696.html" target="_blank" rel="noopener">http://fc.5sing.com/8295696.html</a> 试听： 男声版：<a href="http://fc.5sing.com/9226352.html" target="_blank" rel="noopener">http://fc.5sing.com/9226352.html</a> 试听：</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;这首歌的歌词虽然挺不和谐的。。不过听起来还是挺带感的。。赞一个。。 女声版：&lt;a href=&quot;http://fc.5sing.com/8295696.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;http://fc.5sing.com/82956
+      
+    
+    </summary>
+    
+    
+      <category term="杂物分享" scheme="https://xdh129.github.io/categories/%E6%9D%82%E7%89%A9%E5%88%86%E4%BA%AB/"/>
+    
+    
+      <category term="分享" scheme="https://xdh129.github.io/tags/%E5%88%86%E4%BA%AB/"/>
+    
+      <category term="日文" scheme="https://xdh129.github.io/tags/%E6%97%A5%E6%96%87/"/>
+    
+      <category term="歌曲" scheme="https://xdh129.github.io/tags/%E6%AD%8C%E6%9B%B2/"/>
+    
+      <category term="试听" scheme="https://xdh129.github.io/tags/%E8%AF%95%E5%90%AC/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>世界，你好！</title>
+    <link href="https://xdh129.github.io/2013/07/21/hello-world-wordpress/"/>
+    <id>https://xdh129.github.io/2013/07/21/hello-world-wordpress/</id>
+    <published>2013-07-20T17:58:43.000Z</published>
+    <updated>2019-10-21T23:57:28.875Z</updated>
+    
+    <content type="html"><![CDATA[<p>欢迎使用 WordPress。这是系统自动生成的演示文章。编辑或者删除它，然后开始您的博客！</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;欢迎使用 WordPress。这是系统自动生成的演示文章。编辑或者删除它，然后开始您的博客！&lt;/p&gt;
+
+      
+    
+    </summary>
+    
+    
+      <category term="未分类" scheme="https://xdh129.github.io/categories/%E6%9C%AA%E5%88%86%E7%B1%BB/"/>
+    
+    
+      <category term="hello world" scheme="https://xdh129.github.io/tags/hello-world/"/>
+    
+      <category term="wordpress" scheme="https://xdh129.github.io/tags/wordpress/"/>
+    
+      <category term="世界" scheme="https://xdh129.github.io/tags/%E4%B8%96%E7%95%8C/"/>
+    
+      <category term="你好" scheme="https://xdh129.github.io/tags/%E4%BD%A0%E5%A5%BD/"/>
+    
+      <category term="示例" scheme="https://xdh129.github.io/tags/%E7%A4%BA%E4%BE%8B/"/>
+    
+  </entry>
+  
+</feed>
