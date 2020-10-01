@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>在Flutter应用中调用原生Java/C代码 | Xdh129&#39;s Hexo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Flutter,iOS,Android,跨平台,调用,Java,Kotlin,Dart">
+    <meta name="description" content="Flutter Logo                 Flutter是谷歌的全新移动应用框架，它拥有的热重载以及跨平台的界面开发能力使得我们能在短时间内构建出界面美观的现代化移动应用。然而因为Flutter框架">
+<meta name="keywords" content="Flutter,iOS,Android,跨平台,调用,Java,Kotlin,Dart">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在Flutter应用中调用原生Java&#x2F;C代码">
+<meta property="og:url" content="https:&#x2F;&#x2F;xdh129.github.io&#x2F;2020&#x2F;09&#x2F;20&#x2F;Implementing-Native-Java-C-Code-in-a-Flutter-Application&#x2F;index.html">
+<meta property="og:site_name" content="Xdh129&#39;s Hexo">
+<meta property="og:description" content="Flutter Logo                 Flutter是谷歌的全新移动应用框架，它拥有的热重载以及跨平台的界面开发能力使得我们能在短时间内构建出界面美观的现代化移动应用。然而因为Flutter框架">
+<meta property="og:locale" content="cn">
+<meta property="og:image" content="https:&#x2F;&#x2F;xdh129.github.io&#x2F;2020&#x2F;09&#x2F;20&#x2F;Implementing-Native-Java-C-Code-in-a-Flutter-Application&#x2F;flutter-lockup-logo.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;xdh129.github.io&#x2F;2020&#x2F;09&#x2F;20&#x2F;Implementing-Native-Java-C-Code-in-a-Flutter-Application&#x2F;2020-09-20_161607.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;xdh129.github.io&#x2F;2020&#x2F;09&#x2F;20&#x2F;Implementing-Native-Java-C-Code-in-a-Flutter-Application&#x2F;2020-09-20_161746.png">
+<meta property="og:updated_time" content="2020-09-20T09:29:57.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;xdh129.github.io&#x2F;2020&#x2F;09&#x2F;20&#x2F;Implementing-Native-Java-C-Code-in-a-Flutter-Application&#x2F;flutter-lockup-logo.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="Xdh129&#39;s Hexo" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Xdh129</h5>
+          <a href="mailto:xdh.129@gmail.com" target="_blank" rel="noopener" title="xdh.129@gmail.com" class="mail">xdh.129@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Xdh129" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://weibo.com/2961269250" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-link"></i>
+                测试
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">在Flutter应用中调用原生Java/C代码</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">在Flutter应用中调用原生Java/C代码</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2020-09-20T07:55:41.000Z" itemprop="datePublished" class="page-time">
+  2020-09-20
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E5%BA%94%E7%94%A8%E6%A1%86%E6%9E%B6/">应用框架</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+
+<article id="post-Implementing-Native-Java-C-Code-in-a-Flutter-Application"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">在Flutter应用中调用原生Java/C代码</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2020-09-20 15:55:41" datetime="2020-09-20T07:55:41.000Z"  itemprop="datePublished">2020-09-20</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E5%BA%94%E7%94%A8%E6%A1%86%E6%9E%B6/">应用框架</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="flutter-lockup-logo.png" alt="Flutter Logo" title="">
+                </div>
+                <div class="image-caption">Flutter Logo</div>
+            </figure> 
+
+<p> Flutter是谷歌的全新移动应用框架，它拥有的热重载以及跨平台的界面开发能力使得我们能在短时间内构建出界面美观的现代化移动应用。然而因为Flutter框架主要使用的是Dart语言，而一些系统SDK又是以原生Java代码编写的，这让调用成了一个问题。然而Flutter框架已经为我们准备好了解决方案，它允许我们在不同语言中互相调用方法。</p>
+<blockquote>
+<p>Flutter允许开发者通过编写平台通道(Platform Channel)方法的方式来在Dart语言中调用以Kotlin/Java/Swift/Objetive-C编写的代码，来实现访问iOS和Android上的原生系统功能和系统SDK的目的。 </p>
+</blockquote>
+<p>以上是谷歌官方的介绍，所以在这里我将演示一下如何在使用Dart语言编写的Flutter应用中调用原生Java编写的代码。 </p>
+<p>1.在Flutter项目中再次打开其中的Java语言项目目录(Kotlin等其他语言同理)<br><br/></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="2020-09-20_161607.png" alt="Flutter项目" title="">
+                </div>
+                <div class="image-caption">Flutter项目</div>
+            </figure> 
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="2020-09-20_161746.png" alt="Java语言项目目录" title="">
+                </div>
+                <div class="image-caption">Java语言项目目录</div>
+            </figure> 
+<br/>
+2.在Java语言项目目录的MainActivity.java文件中编写平台通道(Platform Channel)，以和Dart语言部分进行交互
+
+<p>其中CHANNEL变量为平台通道名称，需要和Dart语言中使用的平台通道名称一致 </p>
+<p>示例代码: </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">FlutterActivity</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String CHANNEL = <span class="string">"com.company.testplatformchannel"</span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">configureFlutterEngine</span><span class="params">(@NonNull FlutterEngine flutterEngine)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.configureFlutterEngine(flutterEngine);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">new</span> MethodChannel(flutterEngine.getDartExecutor().getBinaryMessenger(), CHANNEL)</span><br><span class="line">                .setMethodCallHandler(</span><br><span class="line">                        (call, result) -&gt; &#123;</span><br><span class="line">                            <span class="comment">// Note: this method is invoked on the main thread.</span></span><br><span class="line">                            <span class="keyword">if</span> (call.method.equals(<span class="string">"getSomgthingFromJava"</span>)) &#123;</span><br><span class="line">                                <span class="keyword">if</span> ((String) call.argument(<span class="string">"inputText"</span>) != <span class="keyword">null</span>) &#123;</span><br><span class="line">                                    result.success(getJavaText((String) call.argument(<span class="string">"inputText"</span>), (<span class="keyword">int</span>) call.argument(<span class="string">"anotherArgument"</span>)));</span><br><span class="line">                                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                                    result.error(<span class="string">"UNAVAILABLE"</span>, <span class="string">"This Method is not available now."</span>, <span class="keyword">null</span>);</span><br><span class="line">                                &#125;</span><br><span class="line">                            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                                result.notImplemented();</span><br><span class="line">                            &#125;</span><br><span class="line">                        &#125;</span><br><span class="line">                );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<br/>
+3.在Dart语言部分调用平台通道(Platform Channel)，并尝试获取信息
+
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">const</span> CHANNEL = <span class="keyword">const</span> MethodChannel(<span class="string">'com.company.testplatformchannel'</span>);</span><br><span class="line"></span><br><span class="line">Future&lt;<span class="keyword">void</span>&gt; _getSomgthingFromJava(<span class="built_in">String</span> inputText,<span class="built_in">int</span> translateType) <span class="keyword">async</span> &#123;</span><br><span class="line">  <span class="built_in">String</span> outputText;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="built_in">String</span> result = <span class="keyword">await</span> CHANNEL.invokeMethod(<span class="string">'getTranslateText'</span>,&#123;<span class="string">"inputText"</span>:inputText,<span class="string">"anotherArgument"</span>:anotherArgument&#125;);</span><br><span class="line">    outputText = <span class="string">'<span class="subst">$result</span>'</span>;</span><br><span class="line">  &#125; on PlatformException <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">    outputText = <span class="string">"Failed to contact with that Java method: '<span class="subst">$&#123;e.message&#125;</span>'."</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  setState(() &#123;</span><br><span class="line">    _outputText = outputText;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>更多关于如何在Flutter框架中使用平台通道的信息可以在这里找到:<br><a href="https://flutterchina.club/platform-channels/" target="_blank" rel="noopener">https://flutterchina.club/platform-channels/</a></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2020-09-20T09:29:57.000Z" itemprop="dateUpdated">2020-09-20 17:29:57</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2020/09/20/Implementing-Native-Java-C-Code-in-a-Flutter-Application/" target="_blank" rel="external">https://xdh129.github.io/2020/09/20/Implementing-Native-Java-C-Code-in-a-Flutter-Application/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://xdh129.github.io">
+            <img src="/img/avatar.jpg" alt="Xdh129">
+            Xdh129
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/" rel="tag">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Dart/" rel="tag">Dart</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Flutter/" rel="tag">Flutter</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Kotlin/" rel="tag">Kotlin</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/" rel="tag">iOS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%B0%83%E7%94%A8/" rel="tag">调用</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%B7%A8%E5%B9%B3%E5%8F%B0/" rel="tag">跨平台</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://xdh129.github.io/2020/09/20/Implementing-Native-Java-C-Code-in-a-Flutter-Application/&title=《在Flutter应用中调用原生Java/C代码》 — Xdh129's Hexo&pic=https://xdh129.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://xdh129.github.io/2020/09/20/Implementing-Native-Java-C-Code-in-a-Flutter-Application/&title=《在Flutter应用中调用原生Java/C代码》 — Xdh129's Hexo&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://xdh129.github.io/2020/09/20/Implementing-Native-Java-C-Code-in-a-Flutter-Application/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《在Flutter应用中调用原生Java/C代码》 — Xdh129's Hexo&url=https://xdh129.github.io/2020/09/20/Implementing-Native-Java-C-Code-in-a-Flutter-Application/&via=https://xdh129.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://xdh129.github.io/2020/09/20/Implementing-Native-Java-C-Code-in-a-Flutter-Application/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/06/17/hello-world-hexo/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Hello World</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Xdh129 &copy; 2013 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://xdh129.github.io/2020/09/20/Implementing-Native-Java-C-Code-in-a-Flutter-Application/&title=《在Flutter应用中调用原生Java/C代码》 — Xdh129's Hexo&pic=https://xdh129.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://xdh129.github.io/2020/09/20/Implementing-Native-Java-C-Code-in-a-Flutter-Application/&title=《在Flutter应用中调用原生Java/C代码》 — Xdh129's Hexo&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://xdh129.github.io/2020/09/20/Implementing-Native-Java-C-Code-in-a-Flutter-Application/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《在Flutter应用中调用原生Java/C代码》 — Xdh129's Hexo&url=https://xdh129.github.io/2020/09/20/Implementing-Native-Java-C-Code-in-a-Flutter-Application/&via=https://xdh129.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://xdh129.github.io/2020/09/20/Implementing-Native-Java-C-Code-in-a-Flutter-Application/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAADNklEQVR42u3aQW7jQAwEwPz/097rAoHlbtIBrHHNKbAVSTU5dIbkz0+8Hk/Ws2////z3z7/v3D7x9zU/f7GwsbGxb8J+XK6cfU1qtyx5z+QpT++MjY2NfRw7eenrxyThtLkyCbAiJrGxsbGxg/hpozEB76MUGxsbG7u9/vpokfCSwwk2NjY29iwY9sWj/Sd/XkvDxsbG/nh23hX9/J//pL+NjY2N/cHsR7mSMn3bxM3DJg+qFwpsbGzsg9htAai9MqHmTdy2kPTibtjY2NhHsGct1VnZKG8PtCWhegwIGxsb+zh2Gx55aM2Cqm0A14ccbGxs7C9jJ1vQRtGmLJUfb57eGRsbG/s4dj6UMxviyWNpVqhqIxAbGxv7PHb7r/z16Mx+bYZyrg8t2NjY2Oex9yWkTclpVu6fxdjT/jY2Njb2zdmb0nweFe2Vs4Bc5TY2Njb2Eew2HtrSUh5gszZD0U7GxsbGPoidhMcstGZHmratO2tsYGNjY5/KbkMlLxglMdNucfKsTZsBGxsb+y7s5DFJaG1auW1obd4WGxsb+xvYSckmz8NZI2E2vpOXxrCxsbFPYucHhrb004bfbHPfUE7CxsbGPoKd7EryyFmruAXkofvirbCxsbGPYOehkpd+3vtb7cAQNjY29rexk4NHHjObYZ38/psYi/rV2NjY2Ldiz+IkLy3l7eH9MFCx9djY2NjHsYe//KZi0Aw5a/e+OIFhY2NjH8duv20ZyX32UVoHGDY2Nvat2Pl4zb6FMCv3X0dXS33R38bGxsa+LTtvsm7K90k4zYpW+R9j2FvGxsbG/nh2OxBzHSdJXCWbm8dnW8zCxsbG/jZ2Hgnt57Ot3DQJsLGxsc9m/4xW2wbYNG7fNW+DjY2NfRL7Ua62FLUZ+mnHd/LrsbGxsU9ib4Kq3aak/ZC/SR6E0fgONjY29s3Z7cDN7OXysn5b0kq2e9hDwMbGxr4VO3mJWRsgbwDk37bDQ08DDBsbG/sr2XnAtKHSDlwmf5i60YuNjY39Bex8aHK2TbODSr2J2NjY2Mexk6LSfixyE1qboF21B7CxsbE/nt2W+2fjO5uRoPxZeYEJGxsb+wj2P1utaQR4l0qYAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)一颗赛艇!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

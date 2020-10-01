@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xdh129.github.io/"/>
-  <updated>2019-10-22T00:03:34.391Z</updated>
+  <updated>2020-09-20T09:29:57.000Z</updated>
   <id>https://xdh129.github.io/</id>
   
   <author>
@@ -17,11 +17,54 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>在Flutter应用中调用原生Java/C代码</title>
+    <link href="https://xdh129.github.io/2020/09/20/Implementing-Native-Java-C-Code-in-a-Flutter-Application/"/>
+    <id>https://xdh129.github.io/2020/09/20/Implementing-Native-Java-C-Code-in-a-Flutter-Application/</id>
+    <published>2020-09-20T07:55:41.000Z</published>
+    <updated>2020-09-20T09:29:57.000Z</updated>
+    
+    <content type="html"><![CDATA[<figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="flutter-lockup-logo.png" alt="Flutter Logo" title="">                </div>                <div class="image-caption">Flutter Logo</div>            </figure> <p> Flutter是谷歌的全新移动应用框架，它拥有的热重载以及跨平台的界面开发能力使得我们能在短时间内构建出界面美观的现代化移动应用。然而因为Flutter框架主要使用的是Dart语言，而一些系统SDK又是以原生Java代码编写的，这让调用成了一个问题。然而Flutter框架已经为我们准备好了解决方案，它允许我们在不同语言中互相调用方法。</p><blockquote><p>Flutter允许开发者通过编写平台通道(Platform Channel)方法的方式来在Dart语言中调用以Kotlin/Java/Swift/Objetive-C编写的代码，来实现访问iOS和Android上的原生系统功能和系统SDK的目的。 </p></blockquote><p>以上是谷歌官方的介绍，所以在这里我将演示一下如何在使用Dart语言编写的Flutter应用中调用原生Java编写的代码。 </p><p>1.在Flutter项目中再次打开其中的Java语言项目目录(Kotlin等其他语言同理)<br><br/></p><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="2020-09-20_161607.png" alt="Flutter项目" title="">                </div>                <div class="image-caption">Flutter项目</div>            </figure> <figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="2020-09-20_161746.png" alt="Java语言项目目录" title="">                </div>                <div class="image-caption">Java语言项目目录</div>            </figure> <br/>2.在Java语言项目目录的MainActivity.java文件中编写平台通道(Platform Channel)，以和Dart语言部分进行交互<p>其中CHANNEL变量为平台通道名称，需要和Dart语言中使用的平台通道名称一致 </p><p>示例代码: </p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">FlutterActivity</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String CHANNEL = <span class="string">"com.company.testplatformchannel"</span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">configureFlutterEngine</span><span class="params">(@NonNull FlutterEngine flutterEngine)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.configureFlutterEngine(flutterEngine);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">new</span> MethodChannel(flutterEngine.getDartExecutor().getBinaryMessenger(), CHANNEL)</span><br><span class="line">                .setMethodCallHandler(</span><br><span class="line">                        (call, result) -&gt; &#123;</span><br><span class="line">                            <span class="comment">// Note: this method is invoked on the main thread.</span></span><br><span class="line">                            <span class="keyword">if</span> (call.method.equals(<span class="string">"getSomgthingFromJava"</span>)) &#123;</span><br><span class="line">                                <span class="keyword">if</span> ((String) call.argument(<span class="string">"inputText"</span>) != <span class="keyword">null</span>) &#123;</span><br><span class="line">                                    result.success(getJavaText((String) call.argument(<span class="string">"inputText"</span>), (<span class="keyword">int</span>) call.argument(<span class="string">"anotherArgument"</span>)));</span><br><span class="line">                                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                                    result.error(<span class="string">"UNAVAILABLE"</span>, <span class="string">"This Method is not available now."</span>, <span class="keyword">null</span>);</span><br><span class="line">                                &#125;</span><br><span class="line">                            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                                result.notImplemented();</span><br><span class="line">                            &#125;</span><br><span class="line">                        &#125;</span><br><span class="line">                );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br/>3.在Dart语言部分调用平台通道(Platform Channel)，并尝试获取信息<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">const</span> CHANNEL = <span class="keyword">const</span> MethodChannel(<span class="string">'com.company.testplatformchannel'</span>);</span><br><span class="line"></span><br><span class="line">Future&lt;<span class="keyword">void</span>&gt; _getSomgthingFromJava(<span class="built_in">String</span> inputText,<span class="built_in">int</span> translateType) <span class="keyword">async</span> &#123;</span><br><span class="line">  <span class="built_in">String</span> outputText;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="built_in">String</span> result = <span class="keyword">await</span> CHANNEL.invokeMethod(<span class="string">'getTranslateText'</span>,&#123;<span class="string">"inputText"</span>:inputText,<span class="string">"anotherArgument"</span>:anotherArgument&#125;);</span><br><span class="line">    outputText = <span class="string">'<span class="subst">$result</span>'</span>;</span><br><span class="line">  &#125; on PlatformException <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">    outputText = <span class="string">"Failed to contact with that Java method: '<span class="subst">$&#123;e.message&#125;</span>'."</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  setState(() &#123;</span><br><span class="line">    _outputText = outputText;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>更多关于如何在Flutter框架中使用平台通道的信息可以在这里找到:<br><a href="https://flutterchina.club/platform-channels/" target="_blank" rel="noopener">https://flutterchina.club/platform-channels/</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;figure class=&quot;image-bubble&quot;&gt;
+                &lt;div class=&quot;img-lightbox&quot;&gt;
+                    &lt;div class=&quot;overlay&quot;&gt;&lt;/div&gt;
+                   
+      
+    
+    </summary>
+    
+    
+      <category term="应用框架" scheme="https://xdh129.github.io/categories/%E5%BA%94%E7%94%A8%E6%A1%86%E6%9E%B6/"/>
+    
+    
+      <category term="Flutter" scheme="https://xdh129.github.io/tags/Flutter/"/>
+    
+      <category term="iOS" scheme="https://xdh129.github.io/tags/iOS/"/>
+    
+      <category term="Android" scheme="https://xdh129.github.io/tags/Android/"/>
+    
+      <category term="跨平台" scheme="https://xdh129.github.io/tags/%E8%B7%A8%E5%B9%B3%E5%8F%B0/"/>
+    
+      <category term="调用" scheme="https://xdh129.github.io/tags/%E8%B0%83%E7%94%A8/"/>
+    
+      <category term="Java" scheme="https://xdh129.github.io/tags/Java/"/>
+    
+      <category term="Kotlin" scheme="https://xdh129.github.io/tags/Kotlin/"/>
+    
+      <category term="Dart" scheme="https://xdh129.github.io/tags/Dart/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Hello World</title>
     <link href="https://xdh129.github.io/2017/06/17/hello-world-hexo/"/>
     <id>https://xdh129.github.io/2017/06/17/hello-world-hexo/</id>
     <published>2017-06-17T00:00:00.000Z</published>
-    <updated>2019-10-22T00:03:34.391Z</updated>
+    <updated>2017-06-17T00:00:00.000Z</updated>
     
     <content type="html"><![CDATA[<p>现已迁移至Hexo，一个轻量级的开源博客框架。<br>From now on we’re running on Hexo, a lighter &amp; powerful open-source blog framework powered by Node.js.<br>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>]]></content>
     
@@ -43,7 +86,7 @@
     <link href="https://xdh129.github.io/2014/01/04/stop-updating/"/>
     <id>https://xdh129.github.io/2014/01/04/stop-updating/</id>
     <published>2014-01-04T05:56:21.000Z</published>
-    <updated>2019-10-21T23:55:45.627Z</updated>
+    <updated>2014-01-04T05:56:21.000Z</updated>
     
     <content type="html"><![CDATA[<p>博主决定以后将把自己的个人日记记在本机上，在这里博主也推荐一个记日记的软件，叫eDiary，对于记日记来说完全够用了。以后博主将会将大部分重心放在记本机日记上，不再更新此博客。</p>]]></content>
     
@@ -58,9 +101,7 @@
     </summary>
     
     
-      <category term="心灵日记" scheme="https://xdh129.github.io/categories/%E5%BF%83%E7%81%B5%E6%97%A5%E8%AE%B0/"/>
-    
-      <category term="软件分享" scheme="https://xdh129.github.io/categories/%E5%BF%83%E7%81%B5%E6%97%A5%E8%AE%B0/%E8%BD%AF%E4%BB%B6%E5%88%86%E4%BA%AB/"/>
+      <category term="Pre-Blog" scheme="https://xdh129.github.io/categories/Pre-Blog/"/>
     
     
       <category term="停止" scheme="https://xdh129.github.io/tags/%E5%81%9C%E6%AD%A2/"/>
@@ -78,21 +119,24 @@
     <link href="https://xdh129.github.io/2013/08/27/download-youtube-videos-to-domestic-online-disk/"/>
     <id>https://xdh129.github.io/2013/08/27/download-youtube-videos-to-domestic-online-disk/</id>
     <published>2013-08-27T08:49:09.000Z</published>
-    <updated>2019-10-21T23:55:45.627Z</updated>
+    <updated>2013-08-27T08:49:09.000Z</updated>
     
-    <content type="html"><![CDATA[<p>有时，我们看到喜欢的Youtube视频，需要把它转存至国内网盘，但却因为网络问题，无法快速上传/下载视频。没关系，这里有一个不需要本地下载Youtube视频即可将它存至国内网盘的办法。（此方法的主要目的不是下载Youtube视频，而是转存视频至国内网盘） 需要：一枚有离线下载功能的网盘的帐号 1.进入<a href="http://unrestrict.li/download，将想下载的u2b视频的地址粘贴进输入框中。然后点击“Unrestrict" target="_blank" rel="noopener">http://unrestrict.li/download，将想下载的u2b视频的地址粘贴进输入框中。然后点击“Unrestrict</a> links!”。得到一排链接 <a href="http://Zyu.0zed.com/wp-content/uploads/2013/08/89999546.png" target="_blank" rel="noopener"><img src="http://Zyu.0zed.com/wp-content/uploads/2013/08/89999546.png" alt="89999546"></a>   2.下面出现的这些链接是这个视频不同清晰度的下载地址，选择自己需要的那个（注意分辨率和文件后缀名），点击左边的“Download” 3.出现一个文件下载页面，我们按照提示输入验证码，如看不清，点击输入框右边的旋转图标，输入完后，点击下面的“Download” <a href="http://Zyu.0zed.com/wp-content/uploads/2013/08/7777777771466.png" target="_blank" rel="noopener"><img src="http://Zyu.0zed.com/wp-content/uploads/2013/08/7777777771466.png" alt="7777777771466"></a> 4.出现了真正的文件下载页面，不要直接点击，右键复制它的链接即可 <a href="http://Zyu.0zed.com/wp-content/uploads/2013/08/777777.png" target="_blank" rel="noopener"><img src="http://Zyu.0zed.com/wp-content/uploads/2013/08/777777.png" alt="777777"></a> PS：这时还不能直接进入网盘，直接离线下载，因为直接使用此链接离线下载，网盘会提示“地址中含有非法字符”或“参数错误”(BUG) 5.百度搜索“短链接”，点击顶部的第一个应用“网址缩短” <a href="http://Zyu.0zed.com/wp-content/uploads/2013/08/1255646.png" target="_blank" rel="noopener"><img src="http://Zyu.0zed.com/wp-content/uploads/2013/08/1255646.png" alt="1255646"></a> 6.在输入框中粘贴网址，点击右边的“缩短”，得到下面出现的缩短后链接，复制它 <a href="http://Zyu.0zed.com/wp-content/uploads/2013/08/5555555.png" target="_blank" rel="noopener"><img src="http://Zyu.0zed.com/wp-content/uploads/2013/08/5555555.png" alt="5555555"></a> 7.大功告成，现在就可以进入网盘，新建离线下载任务，粘贴刚得到的链接，进行离线下载了 看来速度还行 <a href="http://Zyu.0zed.com/wp-content/uploads/2013/08/46546494564.png" target="_blank" rel="noopener"><img src="http://Zyu.0zed.com/wp-content/uploads/2013/08/46546494564.png" alt="46546494564"></a> PS：使用360云盘进行离线下载肯定会出现下面的情况，不需要担心，等到离线下载完成后文件大小会自动改变的 <a href="http://Zyu.0zed.com/wp-content/uploads/2013/08/54658654.png" target="_blank" rel="noopener"><img src="http://Zyu.0zed.com/wp-content/uploads/2013/08/54658654.png" alt="54658654"></a>   =============================================== 注意，离线下载完成后记得改文件名   本文同样发布在卡饭上：<a href="http://bbs.kafan.cn/thread-1619457-1-1.html" target="_blank" rel="noopener">http://bbs.kafan.cn/thread-1619457-1-1.html</a></p>]]></content>
+    <content type="html"><![CDATA[<figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="8903d91559c5b1fc3ad0fb807cb331df.jpg" alt="YouTube Logo" title="">                </div>                <div class="image-caption">YouTube Logo</div>            </figure> <p>有时，我们看到喜欢的Youtube视频，需要把它转存至国内网盘，但却因为网络问题，无法快速上传/下载视频。没关系，这里有一个不需要本地下载Youtube视频即可将它存至国内网盘的办法。<font color='red'>（此方法的主要目的不是下载Youtube视频，而是转存视频至国内网盘）</font> </p><p>需要：一枚有<font color='red'>离线下载</font>功能的网盘的帐号 </p><p>1.进入<a href="http://unrestrict.li/download" target="_blank" rel="noopener">http://unrestrict.li/download</a>，将想下载的u2b视频的地址粘贴进输入框中。然后点击“Unrestrict links!”。得到一排链接 </p><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="89999546.png" alt="步骤1图片" title="">                </div>                <div class="image-caption">步骤1图片</div>            </figure> <br/><br/>2.下面出现的这些链接是这个视频不同清晰度的下载地址，选择自己需要的那个（注意分辨率和文件后缀名），点击左边的“Download” 3.出现一个文件下载页面，我们按照提示输入验证码，如看不清，点击输入框右边的旋转图标，输入完后，点击下面的“Download” <figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="7777777771466.png" alt="步骤3图片" title="">                </div>                <div class="image-caption">步骤3图片</div>            </figure> <p>4.出现了真正的文件下载页面，不要直接点击，右键复制它的链接即可 </p><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="777777.png" alt="步骤4图片" title="">                </div>                <div class="image-caption">步骤4图片</div>            </figure> <p>PS：这时还不能直接进入网盘，直接离线下载，因为直接使用此链接离线下载，网盘会提示“地址中含有非法字符”或“参数错误”(BUG) </p><p>5.百度搜索“短链接”，点击顶部的第一个应用“网址缩短” </p><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="1255646.png" alt="步骤5图片" title="">                </div>                <div class="image-caption">步骤5图片</div>            </figure> <p>6.在输入框中粘贴网址，点击右边的“缩短”，得到下面出现的缩短后链接，复制它 </p><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="5555555.png" alt="步骤6图片" title="">                </div>                <div class="image-caption">步骤6图片</div>            </figure> <p>7.大功告成，现在就可以进入网盘，新建离线下载任务，粘贴刚得到的链接，进行离线下载了 看来速度还行 </p><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="46546494564.png" alt="步骤7图片" title="">                </div>                <div class="image-caption">步骤7图片</div>            </figure> <p>PS：使用360云盘进行离线下载肯定会出现下面的情况，不需要担心，等到离线下载完成后文件大小会自动改变的 </p><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="54658654.png" alt="PS1图片" title="">                </div>                <div class="image-caption">PS1图片</div>            </figure> <br/><br/>=============================================== <p><font color='red'>注意，离线下载完成后记得改文件名</font><br><br/><br><br/><br>本文同样发布在卡饭上：<a href="http://bbs.kafan.cn/thread-1619457-1-1.html" target="_blank" rel="noopener">http://bbs.kafan.cn/thread-1619457-1-1.html</a></p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;p&gt;有时，我们看到喜欢的Youtube视频，需要把它转存至国内网盘，但却因为网络问题，无法快速上传/下载视频。没关系，这里有一个不需要本地下载Youtube视频即可将它存至国内网盘的办法。（此方法的主要目的不是下载Youtube视频，而是转存视频至国内网盘） 需要：一枚有离线下
+        &lt;figure class=&quot;image-bubble&quot;&gt;
+                &lt;div class=&quot;img-lightbox&quot;&gt;
+                    &lt;div class=&quot;overlay&quot;&gt;&lt;/div&gt;
+                   
       
     
     </summary>
     
     
-      <category term="原创教程" scheme="https://xdh129.github.io/categories/%E5%8E%9F%E5%88%9B%E6%95%99%E7%A8%8B/"/>
+      <category term="Pre-Blog" scheme="https://xdh129.github.io/categories/Pre-Blog/"/>
     
     
       <category term="Youtube" scheme="https://xdh129.github.io/tags/Youtube/"/>
@@ -112,21 +156,22 @@
     <link href="https://xdh129.github.io/2013/08/25/complete-the-game-list/"/>
     <id>https://xdh129.github.io/2013/08/25/complete-the-game-list/</id>
     <published>2013-08-25T08:49:50.000Z</published>
-    <updated>2019-10-21T23:55:45.627Z</updated>
+    <updated>2013-08-25T08:49:50.000Z</updated>
     
-    <content type="html"><![CDATA[<p>博主家的电脑是一台古董机，因此很多游戏都玩不了/痛苦。但是自从有了云游戏，让博主的电脑玩上了许多原本因配置原因玩不了的游戏。 废话不多说，下面列出我所有通关过的游戏： 1.双星物语2（本机）-APRG 2.疯狂农场2（本机）-SLG PS：貌似有很多英文游戏都用这个译名，这个游戏的原名是Mania Farm 2 3.超级马里奥1（FC模拟器）-ACT 4.孤岛惊魂3（云游戏）-FPS 5.孤岛危机2（云游戏）-FPS 6.植物大战僵尸（本机）-PUZ 7.上古卷轴5（云游戏）-ARPG-未玩任何DLC-玩时已作弊:无敌+全技能+全技能点+各种物品、金钱get 8.魔兽争霸3（本机）-RTS-神作，绝对经典 9.泰坦尼克:宿命旅行（本机）-PUZ-这游戏不错！ 10. 放上古董机配置： AIDA64 检测报告： <a href="http://Zyu.0zed.com/attplus/AIDA64" target="_blank" rel="noopener">http://Zyu.0zed.com/attplus/AIDA64</a> 3.00.2578 Beta.htm   ================分隔线================ 另外，我的手机CPU是armv5te架构的，因此注定和这台古董机一样，同样是很多游戏都玩不了 已通关游戏列表： 暂时木有，基本都只玩到一半 这里是手机详细配置： 型号：ZTE-U880E CPU：Marvell PXA920H（armv5te） GPU：Vivante GC530 RAM：436M ================分隔线================ 这里是博主未通关，觉得精品的游戏 1.耻辱（在云游戏玩到一半，-玩到被自己的朋友背叛的剧情，被好心船夫送到某地-，结果存档不见了，不见了） 2.狂野飙车6、7、8代 -手机（确实不错）</p>]]></content>
+    <content type="html"><![CDATA[<p>博主家的电脑是一台古董机，因此很多游戏都玩不了/痛苦。但是自从有了云游戏，让博主的电脑玩上了许多原本因配置原因玩不了的游戏。<br>废话不多说，下面列出我所有通关过的游戏： </p><p><font color='red'>1.双星物语2（本机）-APRG<br>2.疯狂农场2（本机）-SLG PS：貌似有很多英文游戏都用这个译名，这个游戏的原名是Mania Farm 2<br>3.超级马里奥1（FC模拟器）-ACT<br>4.孤岛惊魂3（云游戏）-FPS<br>5.孤岛危机2（云游戏）-FPS<br>6.植物大战僵尸（本机）-PUZ<br>7.上古卷轴5（云游戏）-ARPG-未玩任何DLC-玩时已作弊:无敌+全技能+全技能点+各种物品、金钱get<br>8.魔兽争霸3（本机）-RTS-神作，绝对经典<br>9.泰坦尼克:宿命旅行（本机）-PUZ-这游戏不错！<br>10.</font> </p><p>放上古董机配置： </p><p>AIDA64 检测报告： </p><p><a href="https://xdh129.github.io/2013/08/25/complete-the-game-list/AIDA64%203.00.2578%20Beta.htm">AIDA64 3.00.2578 Beta.htm</a><br><br/><br><br/><br>================分隔线================ </p><p>另外，我的手机CPU是armv5te架构的，因此注定和这台古董机一样，同样是很多游戏都玩不了 </p><p>已通关游戏列表：<br>暂时木有，基本都只玩到一半 </p><p>这里是手机详细配置：<br>型号：ZTE-U880E<br>CPU：Marvell PXA920H（armv5te）<br>GPU：Vivante GC530<br>RAM：436M </p><p>================分隔线================<br>这里是博主未通关，觉得精品的游戏<br>1.耻辱（在云游戏玩到一半，-玩到被自己的朋友背叛的剧情，被好心船夫送到某地-，结果存档不见了，不见了）<br>2.狂野飙车6、7、8代 -手机（确实不错）</p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;p&gt;博主家的电脑是一台古董机，因此很多游戏都玩不了/痛苦。但是自从有了云游戏，让博主的电脑玩上了许多原本因配置原因玩不了的游戏。 废话不多说，下面列出我所有通关过的游戏： 1.双星物语2（本机）-APRG 2.疯狂农场2（本机）-SLG PS：貌似有很多英文游戏都用这个译名，这
+        &lt;p&gt;博主家的电脑是一台古董机，因此很多游戏都玩不了/痛苦。但是自从有了云游戏，让博主的电脑玩上了许多原本因配置原因玩不了的游戏。&lt;br&gt;废话不多说，下面列出我所有通关过的游戏： &lt;/p&gt;
+&lt;p&gt;&lt;font color=&#39;red&#39;&gt;1.双星物语2（本机）-APRG&lt;br&gt;2.疯狂
       
     
     </summary>
     
     
-      <category term="心灵日记" scheme="https://xdh129.github.io/categories/%E5%BF%83%E7%81%B5%E6%97%A5%E8%AE%B0/"/>
+      <category term="Pre-Blog" scheme="https://xdh129.github.io/categories/Pre-Blog/"/>
     
     
       <category term="云游戏" scheme="https://xdh129.github.io/tags/%E4%BA%91%E6%B8%B8%E6%88%8F/"/>
@@ -154,21 +199,22 @@
     <link href="https://xdh129.github.io/2013/08/22/get-360-yunpan-storage-space/"/>
     <id>https://xdh129.github.io/2013/08/22/get-360-yunpan-storage-space/</id>
     <published>2013-08-22T04:06:48.000Z</published>
-    <updated>2019-10-21T23:55:45.627Z</updated>
+    <updated>2013-08-22T04:06:48.000Z</updated>
     
-    <content type="html"><![CDATA[<p>超过440G云盘免费永久空间领取教程： <a href="http://e.weibo.com/2420259703/A5B0QcQ29" target="_blank" rel="noopener">http://e.weibo.com/2420259703/A5B0QcQ29</a> 360G地址：<a href="http://huodong.yunpan.360.cn/na360g" target="_blank" rel="noopener">http://huodong.yunpan.360.cn/na360g</a> 手机卫士5G+27G地址：<a href="http://bbs.360safe.com/thread-2210439-1-1.html" target="_blank" rel="noopener">http://bbs.360safe.com/thread-2210439-1-1.html</a> 360搜索 36G地址： <a href="http://www.so.com/holiday/816.html" target="_blank" rel="noopener">http://www.so.com/holiday/816.html</a> ======================================================= 简单任务440G到手，如还需要更大免费空间 可以参加以下活动： 例如在360手机助手软件特权栏目中安装360一些移动端应用 也可以获取几G空间，做完之后 450G永久免费空间不是梦。 还有安全卫士等级特权赠送云盘空间，目前一共累计赠送15G（各等级特权） 以及云盘自身等级特权赠送空间，也是一共几十G 全部搞定后+每日抽奖空间 总计会达到500G+。 还有一个1024G任务：<a href="http://huodong.yunpan.360.cn/" target="_blank" rel="noopener">http://huodong.yunpan.360.cn/</a> 此文转自：<a href="http://bbs.kafan.cn/thread-1616502-1-1.html" target="_blank" rel="noopener">http://bbs.kafan.cn/thread-1616502-1-1.html</a></p>]]></content>
+    <content type="html"><![CDATA[<p>超过440G云盘免费永久空间领取教程： </p><p><a href="http://e.weibo.com/2420259703/A5B0QcQ29" target="_blank" rel="noopener">http://e.weibo.com/2420259703/A5B0QcQ29</a> </p><p>360G地址：<a href="http://huodong.yunpan.360.cn/na360g" target="_blank" rel="noopener">http://huodong.yunpan.360.cn/na360g</a> </p><p>手机卫士5G+27G地址：<a href="http://bbs.360safe.com/thread-2210439-1-1.html" target="_blank" rel="noopener">http://bbs.360safe.com/thread-2210439-1-1.html</a> </p><p>360搜索 36G地址： <a href="http://www.so.com/holiday/816.html" target="_blank" rel="noopener">http://www.so.com/holiday/816.html</a> </p><p>=======================================================<br>简单任务440G到手，如还需要更大免费空间 可以参加以下活动： </p><p>例如在360手机助手软件特权栏目中安装360一些移动端应用 也可以获取几G空间，做完之后 450G永久免费空间不是梦。<br>还有安全卫士等级特权赠送云盘空间，目前一共累计赠送15G（各等级特权）<br>以及云盘自身等级特权赠送空间，也是一共几十G 全部搞定后+每日抽奖空间 总计会达到500G+。<br>还有一个1024G任务：<a href="http://huodong.yunpan.360.cn/" target="_blank" rel="noopener">http://huodong.yunpan.360.cn/</a><br><br/><br>此文转自：<a href="http://bbs.kafan.cn/thread-1616502-1-1.html" target="_blank" rel="noopener">http://bbs.kafan.cn/thread-1616502-1-1.html</a></p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;p&gt;超过440G云盘免费永久空间领取教程： &lt;a href=&quot;http://e.weibo.com/2420259703/A5B0QcQ29&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;http://e.weibo.com/2420259703/A5B0Qc
+        &lt;p&gt;超过440G云盘免费永久空间领取教程： &lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://e.weibo.com/2420259703/A5B0QcQ29&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;http://e.weibo.com/242025970
       
     
     </summary>
     
     
-      <category term="杂物分享" scheme="https://xdh129.github.io/categories/%E6%9D%82%E7%89%A9%E5%88%86%E4%BA%AB/"/>
+      <category term="Pre-Blog" scheme="https://xdh129.github.io/categories/Pre-Blog/"/>
     
     
       <category term="360" scheme="https://xdh129.github.io/tags/360/"/>
@@ -190,21 +236,24 @@
     <link href="https://xdh129.github.io/2013/07/31/7-31-8-2-master-homework-battle/"/>
     <id>https://xdh129.github.io/2013/07/31/7-31-8-2-master-homework-battle/</id>
     <published>2013-07-31T09:33:55.000Z</published>
-    <updated>2019-10-21T23:55:45.627Z</updated>
+    <updated>2013-07-31T09:33:55.000Z</updated>
     
-    <content type="html"><![CDATA[<p>苦逼学生党8.3要去交作业啊啊啊啊啊啊啊啊，作业还差一大半啊啊啊，所以这几天一定要把作业全写完，即使是通宵我也不在乎啊/去死。。。 作业完成进度========complete homework 语文–通宵完成。。。 数学–两天搞定。。。 英语–花了一个下午。。。终于写完了。。。 历史–借助网络的力量，N小时搞定。。呼呼 还好在交之前搞定了。。。不过这作业质量吗。。。就差得多了= = 所以作业一定要提前写啊。。。反正迟早都要写的，不然拖到后面写都写不完啊。。。我就是一个惨痛的活生生的例子 ==================分隔线================== 8.3日及以后作业完成进度-HC 语文–写完鸟<del>心情各种舒畅</del> 数学–作业中最多的就是它了。。。真是让人痛苦 英语–某万恶的海报。。。。终于画完了 历史–两张卷子已搞定 物理–终于写完了，好多啊 ==================分隔线================== 完成作业后感言：–作业不要拖着写啊。。。不然你到假期还剩二十天左右的时候会很痛苦的</p>]]></content>
+    <content type="html"><![CDATA[<p>苦逼学生党8.3要去交作业啊啊啊啊啊啊啊啊，作业还差一大半啊啊啊，所以这几天一定要把作业全写完，即使是通宵我也不在乎啊/去死。。。 </p><p>作业完成进度========complete homework </p><p>语文–通宵完成。。。 </p><p>数学–两天搞定。。。 </p><p>英语–花了一个下午。。。</p><p>终于写完了。。。 </p><p>历史–借助网络的力量，N小时搞定。。呼呼 </p><p>还好在交之前搞定了。。。不过这作业质量吗。。。就差得多了= =<br>所以作业一定要提前写啊。。。反正迟早都要写的，不然拖到后面写都写不完啊。。。我就是一个惨痛的活生生的例子<br>==================分隔线================== </p><p>8.3日及以后作业完成进度-HC </p><p>语文–写完鸟<del>心情各种舒畅</del> </p><p>数学–作业中最多的就是它了。。。真是让人痛苦 </p><p>英语–某万恶的海报。。。。终于画完了 </p><p>历史–两张卷子已搞定 </p><p>物理–终于写完了，好多啊 </p><p>==================分隔线================== </p><p>完成作业后感言：–作业不要拖着写啊。。。不然你到假期还剩二十天左右的时候会很痛苦的</p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;p&gt;苦逼学生党8.3要去交作业啊啊啊啊啊啊啊啊，作业还差一大半啊啊啊，所以这几天一定要把作业全写完，即使是通宵我也不在乎啊/去死。。。 作业完成进度========complete homework 语文–通宵完成。。。 数学–两天搞定。。。 英语–花了一个下午。。。终于写完了
+        &lt;p&gt;苦逼学生党8.3要去交作业啊啊啊啊啊啊啊啊，作业还差一大半啊啊啊，所以这几天一定要把作业全写完，即使是通宵我也不在乎啊/去死。。。 &lt;/p&gt;
+&lt;p&gt;作业完成进度========complete homework &lt;/p&gt;
+&lt;p&gt;语文–通宵完成。。。 &lt;/p&gt;
+&lt;p&gt;数学–两
       
     
     </summary>
     
     
-      <category term="心灵日记" scheme="https://xdh129.github.io/categories/%E5%BF%83%E7%81%B5%E6%97%A5%E8%AE%B0/"/>
+      <category term="Pre-Blog" scheme="https://xdh129.github.io/categories/Pre-Blog/"/>
     
     
       <category term="作业" scheme="https://xdh129.github.io/tags/%E4%BD%9C%E4%B8%9A/"/>
@@ -222,7 +271,7 @@
     <link href="https://xdh129.github.io/2013/07/30/about-baidu-tieba-attack/"/>
     <id>https://xdh129.github.io/2013/07/30/about-baidu-tieba-attack/</id>
     <published>2013-07-30T13:56:23.000Z</published>
-    <updated>2019-10-21T23:55:45.627Z</updated>
+    <updated>2013-07-30T13:56:23.000Z</updated>
     
     <content type="html"><![CDATA[<p>首回合权志龙爆吧行动高潮已经散去，据不完全统计，截止7月29日上午09.45分，各俱乐部国家队共出动参战部队258万人次，其中李毅吧遥遥领先出动66万人次，其次皇家马德里：39万人次，巴塞罗那36万。拜仁慕尼黑28万。米兰双雄27万。切尔西15万。其他粉丝吧出动47万人次！这个数字超越了第二次世界大战德军闪击波兰和日本侵略中国的部队人数总和！共发帖1756万条。阵亡小号无数。感谢权志龙！让我们德比死敌空前的团结一致！敬礼！</p>]]></content>
     
@@ -236,7 +285,7 @@
     </summary>
     
     
-      <category term="新鲜事" scheme="https://xdh129.github.io/categories/%E6%96%B0%E9%B2%9C%E4%BA%8B/"/>
+      <category term="Pre-Blog" scheme="https://xdh129.github.io/categories/Pre-Blog/"/>
     
     
       <category term="攻击" scheme="https://xdh129.github.io/tags/%E6%94%BB%E5%87%BB/"/>
@@ -252,38 +301,32 @@
   </entry>
   
   <entry>
-    <title>JQ无国界！外国Fans绘制《刺客信条》同人图赏（慎入）</title>
+    <title>信仰无国界！外国Fans绘制《刺客信条》图赏（慎入）</title>
     <link href="https://xdh129.github.io/2013/07/23/assassins-creed-gameparos/"/>
     <id>https://xdh129.github.io/2013/07/23/assassins-creed-gameparos/</id>
     <published>2013-07-23T08:03:54.000Z</published>
-    <updated>2019-10-21T23:55:45.627Z</updated>
+    <updated>2013-07-23T08:03:54.000Z</updated>
     
-    <content type="html"><![CDATA[<p>近来，国外一名叫做doubleleaf的《刺客信条》的忠实玩家创作了一组《刺客信条》游戏系列的同人画作。从画作的内容看来，如果这位作者在中国，应该会被称作是“腐女”吧……画作的内容十分劲暴，恶搞的基情趣味十足，作者更是画功深厚，用笔细腻，赶紧让我们来欣赏一下吧！ （来源：<a href="http://www.gamersky.com/news/201102/170433.shtml" target="_blank" rel="noopener">http://www.gamersky.com/news/201102/170433.shtml</a>） =============以上为转载游民星空内容=============   这位作者画的图轻度不和谐，内带JQ，所以我在这里就不贴出那些奇怪的部分了。 我把图集打包了下来，上传到了网盘上，腐女自行观看吧（18X，慎入）   百度网盘下载链接：<a href="http://pan.baidu.com/share/link?shareid=1138159646&amp;uk=924176178" target="_blank" rel="noopener">http://pan.baidu.com/share/link?shareid=1138159646&amp;uk=924176178</a> 作者：doubleleaf         作者网站：<a href="http://doubleleaf.deviantart.com/" target="_blank" rel="noopener">http://doubleleaf.deviantart.com/</a>   <a href="http://Zyu.0zed.com/wp-content/uploads/2013/07/bh_des_by_doubleleaf.jpg" target="_blank" rel="noopener"><img src="http://Zyu.0zed.com/wp-content/uploads/2013/07/bh_des_by_doubleleaf-265x300.jpg" alt="bh_des_by_doubleleaf"></a>   <a href="http://Zyu.0zed.com/wp-content/uploads/2013/07/Malik_giving_a_wink_by_doubleleaf.jpg" target="_blank" rel="noopener"><img src="http://Zyu.0zed.com/wp-content/uploads/2013/07/Malik_giving_a_wink_by_doubleleaf-227x300.jpg" alt="Malik_giving_a_wink_by_doubleleaf"></a>   <a href="http://Zyu.0zed.com/wp-content/uploads/2013/07/Altair_by_doubleleaf.jpg" target="_blank" rel="noopener"><img src="http://Zyu.0zed.com/wp-content/uploads/2013/07/Altair_by_doubleleaf-212x300.jpg" alt="Altair_by_doubleleaf"></a>   <a href="http://Zyu.0zed.com/wp-content/uploads/2013/07/escape_mashaf_by_doubleleaf.jpg" target="_blank" rel="noopener"><img src="http://Zyu.0zed.com/wp-content/uploads/2013/07/escape_mashaf_by_doubleleaf-257x300.jpg" alt="escape_mashaf_by_doubleleaf"></a>     PS：画得真的不错啊，赞一个~</p>]]></content>
+    <content type="html"><![CDATA[<p style="text-indent:2em">近来，国外一名叫做doubleleaf的《刺客信条》的忠实玩家创作了一组《刺客信条》游戏系列的████画作。从画作的内容看来，如果这位作者在中国，应该会被称作是“████”吧……画作的内容十分劲暴，恶搞的████趣味十足，作者更是画功深厚，用笔细腻，赶紧让我们来欣赏一下吧！</p> <p>（来源：<a href="http://www.gamersky.com/news/201102/170433.shtml" target="_blank" rel="noopener">http://www.gamersky.com/news/201102/170433.shtml</a>） </p><p>=============以上为转载游民星空内容============= </p><p>这位作者画的图轻度不和谐，内带██，所以我在这里就不贴出那些奇怪的部分了。 </p><p>我把图集打包了下来，上传到了网盘上，████自行观看吧（███，慎入）<br><br/><br>百度网盘下载链接：<del><a href="http://pan.baidu.com/share/link?shareid=1138159646&uk=924176178" target="_blank" rel="noopener">http://pan.baidu.com/share/link?shareid=1138159646&amp;uk=924176178(已失效)</a></del> </p><p>作者：doubleleaf         作者网站：<a href="http://doubleleaf.deviantart.com/" target="_blank" rel="noopener">http://doubleleaf.deviantart.com/</a><br><br/><br><br/><br><br/></p><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="bh_des_by_doubleleaf.jpg" alt="bh_des_by_doubleleaf" title="">                </div>                <div class="image-caption">bh_des_by_doubleleaf</div>            </figure> <br/><br/><br/><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="Malik_giving_a_wink_by_doubleleaf.jpg" alt="Malik_giving_a_wink_by_doubleleaf" title="">                </div>                <div class="image-caption">Malik_giving_a_wink_by_doubleleaf</div>            </figure> <br/><br/><br/><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="Altair_by_doubleleaf.jpg" alt="Altair_by_doubleleaf" title="">                </div>                <div class="image-caption">Altair_by_doubleleaf</div>            </figure> <br/><br/><br/><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="escape_mashaf_by_doubleleaf.jpg" alt="escape_mashaf_by_doubleleaf" title="">                </div>                <div class="image-caption">escape_mashaf_by_doubleleaf</div>            </figure> <br/><br/><br/><br/>PS：画得真的不错啊，赞一个~]]></content>
     
     <summary type="html">
     
       
       
-        &lt;p&gt;近来，国外一名叫做doubleleaf的《刺客信条》的忠实玩家创作了一组《刺客信条》游戏系列的同人画作。从画作的内容看来，如果这位作者在中国，应该会被称作是“腐女”吧……画作的内容十分劲暴，恶搞的基情趣味十足，作者更是画功深厚，用笔细腻，赶紧让我们来欣赏一下吧！ （来源：&lt;
+        &lt;p style=&quot;text-indent:2em&quot;&gt;近来，国外一名叫做doubleleaf的《刺客信条》的忠实玩家创作了一组《刺客信条》游戏系列的████画作。从画作的内容看来，如果这位作者在中国，应该会被称作是“████”吧……画作的内容十分劲暴，恶搞的████趣味十足，作者
       
     
     </summary>
     
     
-      <category term="杂物分享" scheme="https://xdh129.github.io/categories/%E6%9D%82%E7%89%A9%E5%88%86%E4%BA%AB/"/>
+      <category term="Pre-Blog" scheme="https://xdh129.github.io/categories/Pre-Blog/"/>
     
-    
-      <category term="18X" scheme="https://xdh129.github.io/tags/18X/"/>
     
       <category term="刺客" scheme="https://xdh129.github.io/tags/%E5%88%BA%E5%AE%A2/"/>
     
       <category term="刺客信条" scheme="https://xdh129.github.io/tags/%E5%88%BA%E5%AE%A2%E4%BF%A1%E6%9D%A1/"/>
     
-      <category term="同人" scheme="https://xdh129.github.io/tags/%E5%90%8C%E4%BA%BA/"/>
-    
       <category term="图集" scheme="https://xdh129.github.io/tags/%E5%9B%BE%E9%9B%86/"/>
-    
-      <category term="基情" scheme="https://xdh129.github.io/tags/%E5%9F%BA%E6%83%85/"/>
     
       <category term="插画" scheme="https://xdh129.github.io/tags/%E6%8F%92%E7%94%BB/"/>
     
@@ -294,21 +337,24 @@
     <link href="https://xdh129.github.io/2013/07/22/about-cloudunion/"/>
     <id>https://xdh129.github.io/2013/07/22/about-cloudunion/</id>
     <published>2013-07-22T09:38:26.000Z</published>
-    <updated>2019-10-21T23:55:45.627Z</updated>
+    <updated>2013-07-22T09:38:26.000Z</updated>
     
-    <content type="html"><![CDATA[<p>[caption id=”attachment_18” align=”alignnone” width=”242”]<a href="http://Zyu.0zed.com/wp-content/uploads/2013/07/cloudunion.png" target="_blank" rel="noopener"><img src="http://Zyu.0zed.com/wp-content/uploads/2013/07/cloudunion.png" alt="官网logo"></a> 官网logo[/caption] 云游戏，传说中中国最专业的云游戏平台“云联科技”。根据官方的介绍，通过“云游戏”这个平台，你根本无需下载，只需像看电影在线点播那样，稍等瞬间就开始在线玩体积超过10G的超大型3D游戏！而且即便你的电脑只有性能很一般的集成显卡，内存CPU硬盘空间神马的很吃紧，也能流畅地体验最新的/配置要求特别BT的3D新游戏，无需安装，无需配置，非常简单。可谓是低配置、怕麻烦玩家们的福音。（此段文字引自<a href="http://www.iplaysoft.com/yxyun.html" target="_blank" rel="noopener">异次元软件世界</a>） 我曾经在云游戏中成功将耻辱，上古卷轴5，孤岛危机2和孤岛惊魂3通关。云游戏内游戏均限帧在25fps内，因此游戏的流畅度还是不错的，操作延迟也比较低。只是画面会受到网速波动的影响，时常有抖动的模糊现象出现。但是，这对于性能低的PC来说，都不是问题。云游戏服务器的配置也是非常不错的，以下附图。（PS：还有一张云游戏中运行街头霸王X铁拳内benchmark结果的图我找不到了 /捂脸） <a href="http://Zyu.0zed.com/wp-content/uploads/2013/07/benchmark2.jpg" target="_blank" rel="noopener"><img src="http://Zyu.0zed.com/wp-content/uploads/2013/07/benchmark2-300x143.jpg" alt="benchmark2"></a><a href="http://Zyu.0zed.com/wp-content/uploads/2013/07/benchmark1.jpg" target="_blank" rel="noopener"><img src="http://Zyu.0zed.com/wp-content/uploads/2013/07/benchmark1-300x245.jpg" alt="benchmark1"></a>     自从云游戏中某网游上架后（1月13日），引来了大量的用户，其中不乏各种学生，参观者，试玩者，一度导致服务器亚历山大，于是云游戏官方经常不得不以维护的名义关闭此游戏，以减轻压力。 但是在从6月28日后，云游戏官方客服通通消失了，与此同时也关闭了大量的服务器，据说是云联经营不善，濒临破产（未经证实）    来源：<a href="http://cio.it168.com/a2013/0711/1506/000001506270.shtml" target="_blank" rel="noopener">http://cio.it168.com/a2013/0711/1506/000001506270.shtml</a>   唉，如今的云游戏，真是不如以前了。。</p>]]></content>
+    <content type="html"><![CDATA[<figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="cloudunion.png" alt="官网logo" title="">                </div>                <div class="image-caption">官网logo</div>            </figure> <p style="text-indent:2em">云游戏，传说中中国最专业的云游戏平台“云联科技”。根据官方的介绍，通过“云游戏”这个平台，你根本无需下载，只需像看电影在线点播那样，稍等瞬间就开始在线玩体积超过10G的超大型3D游戏！而且即便你的电脑只有性能很一般的集成显卡，内存CPU硬盘空间神马的很吃紧，也能流畅地体验最新的/配置要求特别BT的3D新游戏，无需安装，无需配置，非常简单。可谓是低配置、怕麻烦玩家们的福音。</p> <p>（此段文字引自<a href="http://www.iplaysoft.com/yxyun.html" target="_blank" rel="noopener">异次元软件世界</a>） </p><p style="text-indent:2em">我曾经在云游戏中成功将耻辱，上古卷轴5，孤岛危机2和孤岛惊魂3通关。云游戏内游戏均限帧在25fps内，因此游戏的流畅度还是不错的，操作延迟也比较低。只是画面会受到网速波动的影响，时常有抖动的模糊现象出现。但是，这对于性能低的PC来说，都不是问题。云游戏服务器的配置也是非常不错的，以下附图。（PS：还有一张云游戏中运行街头霸王X铁拳内benchmark结果的图我找不到了 /捂脸）</p> <br/><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="benchmark2.jpg" alt="benchmark2" title="">                </div>                <div class="image-caption">benchmark2</div>            </figure> <figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="benchmark1.jpg" alt="benchmark1" title="">                </div>                <div class="image-caption">benchmark1</div>            </figure> <br/><p style="text-indent:2em">自从云游戏中某网游上架后（1月13日），引来了大量的用户，其中不乏各种学生，参观者，试玩者，一度导致服务器亚历山大，于是云游戏官方经常不得不以维护的名义关闭此游戏，以减轻压力。</p> <br/><p style="text-indent:2em">但是在从6月28日后，云游戏官方客服通通消失了，与此同时也关闭了大量的服务器，据说是云联经营不善，濒临破产（未经证实）</p> <p>来源：<a href="http://cio.it168.com/a2013/0711/1506/000001506270.shtml" target="_blank" rel="noopener">http://cio.it168.com/a2013/0711/1506/000001506270.shtml</a><br><br/></p><p style="text-indent:2em">唉，如今的云游戏，真是不如以前了。。</p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;p&gt;[caption id=”attachment_18” align=”alignnone” width=”242”]&lt;a href=&quot;http://Zyu.0zed.com/wp-content/uploads/2013/07/cloudunion.png&quot; target=
+        &lt;figure class=&quot;image-bubble&quot;&gt;
+                &lt;div class=&quot;img-lightbox&quot;&gt;
+                    &lt;div class=&quot;overlay&quot;&gt;&lt;/div&gt;
+                   
       
     
     </summary>
     
     
-      <category term="心灵日记" scheme="https://xdh129.github.io/categories/%E5%BF%83%E7%81%B5%E6%97%A5%E8%AE%B0/"/>
+      <category term="Pre-Blog" scheme="https://xdh129.github.io/categories/Pre-Blog/"/>
     
     
       <category term="云" scheme="https://xdh129.github.io/tags/%E4%BA%91/"/>
@@ -326,21 +372,22 @@
     <link href="https://xdh129.github.io/2013/07/21/share-a-song-chivalry/"/>
     <id>https://xdh129.github.io/2013/07/21/share-a-song-chivalry/</id>
     <published>2013-07-21T03:54:10.000Z</published>
-    <updated>2019-10-21T23:55:45.627Z</updated>
+    <updated>2013-07-21T03:54:10.000Z</updated>
     
-    <content type="html"><![CDATA[<p>这首歌的歌词虽然挺不和谐的。。不过听起来还是挺带感的。。赞一个。。 女声版：<a href="http://fc.5sing.com/8295696.html" target="_blank" rel="noopener">http://fc.5sing.com/8295696.html</a> 试听： 男声版：<a href="http://fc.5sing.com/9226352.html" target="_blank" rel="noopener">http://fc.5sing.com/9226352.html</a> 试听：</p>]]></content>
+    <content type="html"><![CDATA[<p>这首歌的歌词虽然挺不和谐的。。不过听起来还是挺带感的。。赞一个。。 </p><p>女声版：<del><a href="http://fc.5sing.com/8295696.html" target="_blank" rel="noopener">http://fc.5sing.com/8295696.html</a></del><br>试听： <del>Flash嵌入已失效</del> </p><p>男声版：<del><a href="http://fc.5sing.com/9226352.html" target="_blank" rel="noopener">http://fc.5sing.com/9226352.html</a></del><br>试听：<del>Flash嵌入已失效</del></p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;p&gt;这首歌的歌词虽然挺不和谐的。。不过听起来还是挺带感的。。赞一个。。 女声版：&lt;a href=&quot;http://fc.5sing.com/8295696.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;http://fc.5sing.com/82956
+        &lt;p&gt;这首歌的歌词虽然挺不和谐的。。不过听起来还是挺带感的。。赞一个。。 &lt;/p&gt;
+&lt;p&gt;女声版：&lt;del&gt;&lt;a href=&quot;http://fc.5sing.com/8295696.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;http://fc.5s
       
     
     </summary>
     
     
-      <category term="杂物分享" scheme="https://xdh129.github.io/categories/%E6%9D%82%E7%89%A9%E5%88%86%E4%BA%AB/"/>
+      <category term="Pre-Blog" scheme="https://xdh129.github.io/categories/Pre-Blog/"/>
     
     
       <category term="分享" scheme="https://xdh129.github.io/tags/%E5%88%86%E4%BA%AB/"/>
@@ -358,7 +405,7 @@
     <link href="https://xdh129.github.io/2013/07/21/hello-world-wordpress/"/>
     <id>https://xdh129.github.io/2013/07/21/hello-world-wordpress/</id>
     <published>2013-07-20T17:58:43.000Z</published>
-    <updated>2019-10-21T23:57:28.875Z</updated>
+    <updated>2013-07-20T17:58:43.000Z</updated>
     
     <content type="html"><![CDATA[<p>欢迎使用 WordPress。这是系统自动生成的演示文章。编辑或者删除它，然后开始您的博客！</p>]]></content>
     
@@ -373,12 +420,12 @@
     </summary>
     
     
-      <category term="未分类" scheme="https://xdh129.github.io/categories/%E6%9C%AA%E5%88%86%E7%B1%BB/"/>
+      <category term="Pre-Blog" scheme="https://xdh129.github.io/categories/Pre-Blog/"/>
     
     
-      <category term="hello world" scheme="https://xdh129.github.io/tags/hello-world/"/>
+      <category term="Hello World" scheme="https://xdh129.github.io/tags/Hello-World/"/>
     
-      <category term="wordpress" scheme="https://xdh129.github.io/tags/wordpress/"/>
+      <category term="WordPress" scheme="https://xdh129.github.io/tags/WordPress/"/>
     
       <category term="世界" scheme="https://xdh129.github.io/tags/%E4%B8%96%E7%95%8C/"/>
     
