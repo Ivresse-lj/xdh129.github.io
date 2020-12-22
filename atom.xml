@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xdh129.github.io/"/>
-  <updated>2020-12-07T11:45:02.000Z</updated>
+  <updated>2020-12-22T09:40:53.000Z</updated>
   <id>https://xdh129.github.io/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>软件工程作业-小组应用开发-基于Flutter和百度翻译SDK的手机翻译应用</title>
+    <link href="https://xdh129.github.io/2020/12/22/Software-Engineering-Homework-DevelopingApp/"/>
+    <id>https://xdh129.github.io/2020/12/22/Software-Engineering-Homework-DevelopingApp/</id>
+    <published>2020-12-22T11:23:47.000Z</published>
+    <updated>2020-12-22T09:40:53.000Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="应用简介"><a href="#应用简介" class="headerlink" title="应用简介"></a>应用简介</h4><p>我们小组使用谷歌Flutter框架开发了一款手机翻译应用，它拥有美观的界面，支持夜间模式切换，并能够进行多国语言的翻译(由百度翻译SDK进行支持)，目前已完成原型开发，基本功能已经可用<br>(真机上使用可能存在无法获取网络权限的问题，模拟器上可正常联网)</p><p>技术特性: 使用Dart语言，基于Flutter框架，拥有跨平台能力，可同时支持Android/iOS平台</p><h4 id="应用界面"><a href="#应用界面" class="headerlink" title="应用界面"></a>应用界面</h4><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="6875233415398949384.jpg" alt="应用界面" title="">                </div>                <div class="image-caption">应用界面</div>            </figure> <h4 id="UML图"><a href="#UML图" class="headerlink" title="UML图"></a>UML图</h4><p><strong>以下为组员在软件开发前完成的UML图，不代表最终成品</strong> </p><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="2020112215204413.png" alt="图1" title="">                </div>                <div class="image-caption">图1</div>            </figure> <figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="20201122150505628.png" alt="图2" title="">                </div>                <div class="image-caption">图2</div>            </figure> <h4 id="测试版本-Android-ARM64"><a href="#测试版本-Android-ARM64" class="headerlink" title="测试版本(Android-ARM64)"></a>测试版本(Android-ARM64)</h4><p>(可能需要良好网络才能下载)<br><strong><a href="https://github.com/Xdh129/xdh129.github.io/blob/master/2020/12/22/Software-Engineering-Homework-DevelopingApp/simpleTranslatorAlpha0.01.apk" target="_blank" rel="noopener">simpleTranslatorAlpha0.01.apk</a></strong> </p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h4 id=&quot;应用简介&quot;&gt;&lt;a href=&quot;#应用简介&quot; class=&quot;headerlink&quot; title=&quot;应用简介&quot;&gt;&lt;/a&gt;应用简介&lt;/h4&gt;&lt;p&gt;我们小组使用谷歌Flutter框架开发了一款手机翻译应用，它拥有美观的界面，支持夜间模式切换，并能够进行多国语言的翻译(由百
+      
+    
+    </summary>
+    
+    
+      <category term="作业" scheme="https://xdh129.github.io/categories/%E4%BD%9C%E4%B8%9A/"/>
+    
+    
+      <category term="作业" scheme="https://xdh129.github.io/tags/%E4%BD%9C%E4%B8%9A/"/>
+    
+      <category term="开发" scheme="https://xdh129.github.io/tags/%E5%BC%80%E5%8F%91/"/>
+    
+      <category term="软件工程" scheme="https://xdh129.github.io/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"/>
+    
+  </entry>
   
   <entry>
     <title>PTA拼题网作业-算法_动态规划-1207</title>
@@ -604,43 +634,6 @@
       <category term="更新" scheme="https://xdh129.github.io/tags/%E6%9B%B4%E6%96%B0/"/>
     
       <category term="软件" scheme="https://xdh129.github.io/tags/%E8%BD%AF%E4%BB%B6/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>使用带有离线下载功能的网盘转存Youtube视频教程</title>
-    <link href="https://xdh129.github.io/2013/08/27/download-youtube-videos-to-domestic-online-disk/"/>
-    <id>https://xdh129.github.io/2013/08/27/download-youtube-videos-to-domestic-online-disk/</id>
-    <published>2013-08-27T08:49:09.000Z</published>
-    <updated>2013-08-27T08:49:09.000Z</updated>
-    
-    <content type="html"><![CDATA[<figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="8903d91559c5b1fc3ad0fb807cb331df.jpg" alt="YouTube Logo" title="">                </div>                <div class="image-caption">YouTube Logo</div>            </figure> <p>有时，我们看到喜欢的Youtube视频，需要把它转存至国内网盘，但却因为网络问题，无法快速上传/下载视频。没关系，这里有一个不需要本地下载Youtube视频即可将它存至国内网盘的办法。<font color='red'>（此方法的主要目的不是下载Youtube视频，而是转存视频至国内网盘）</font> </p><p>需要：一枚有<font color='red'>离线下载</font>功能的网盘的帐号 </p><p>1.进入<a href="http://unrestrict.li/download" target="_blank" rel="noopener">http://unrestrict.li/download</a>，将想下载的u2b视频的地址粘贴进输入框中。然后点击“Unrestrict links!”。得到一排链接 </p><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="89999546.png" alt="步骤1图片" title="">                </div>                <div class="image-caption">步骤1图片</div>            </figure> <br/><br/>2.下面出现的这些链接是这个视频不同清晰度的下载地址，选择自己需要的那个（注意分辨率和文件后缀名），点击左边的“Download” 3.出现一个文件下载页面，我们按照提示输入验证码，如看不清，点击输入框右边的旋转图标，输入完后，点击下面的“Download” <figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="7777777771466.png" alt="步骤3图片" title="">                </div>                <div class="image-caption">步骤3图片</div>            </figure> <p>4.出现了真正的文件下载页面，不要直接点击，右键复制它的链接即可 </p><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="777777.png" alt="步骤4图片" title="">                </div>                <div class="image-caption">步骤4图片</div>            </figure> <p>PS：这时还不能直接进入网盘，直接离线下载，因为直接使用此链接离线下载，网盘会提示“地址中含有非法字符”或“参数错误”(BUG) </p><p>5.百度搜索“短链接”，点击顶部的第一个应用“网址缩短” </p><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="1255646.png" alt="步骤5图片" title="">                </div>                <div class="image-caption">步骤5图片</div>            </figure> <p>6.在输入框中粘贴网址，点击右边的“缩短”，得到下面出现的缩短后链接，复制它 </p><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="5555555.png" alt="步骤6图片" title="">                </div>                <div class="image-caption">步骤6图片</div>            </figure> <p>7.大功告成，现在就可以进入网盘，新建离线下载任务，粘贴刚得到的链接，进行离线下载了 看来速度还行 </p><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="46546494564.png" alt="步骤7图片" title="">                </div>                <div class="image-caption">步骤7图片</div>            </figure> <p>PS：使用360云盘进行离线下载肯定会出现下面的情况，不需要担心，等到离线下载完成后文件大小会自动改变的 </p><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="54658654.png" alt="PS1图片" title="">                </div>                <div class="image-caption">PS1图片</div>            </figure> <br/><br/>=============================================== <p><font color='red'>注意，离线下载完成后记得改文件名</font><br><br/><br><br/><br>本文同样发布在卡饭上：<a href="http://bbs.kafan.cn/thread-1619457-1-1.html" target="_blank" rel="noopener">http://bbs.kafan.cn/thread-1619457-1-1.html</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;figure class=&quot;image-bubble&quot;&gt;
-                &lt;div class=&quot;img-lightbox&quot;&gt;
-                    &lt;div class=&quot;overlay&quot;&gt;&lt;/div&gt;
-                   
-      
-    
-    </summary>
-    
-    
-      <category term="Pre-Blog" scheme="https://xdh129.github.io/categories/Pre-Blog/"/>
-    
-    
-      <category term="Youtube" scheme="https://xdh129.github.io/tags/Youtube/"/>
-    
-      <category term="下载" scheme="https://xdh129.github.io/tags/%E4%B8%8B%E8%BD%BD/"/>
-    
-      <category term="网盘" scheme="https://xdh129.github.io/tags/%E7%BD%91%E7%9B%98/"/>
-    
-      <category term="视频" scheme="https://xdh129.github.io/tags/%E8%A7%86%E9%A2%91/"/>
-    
-      <category term="转存" scheme="https://xdh129.github.io/tags/%E8%BD%AC%E5%AD%98/"/>
     
   </entry>
   
