@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>PTA拼题网作业-算法_动态规划-1207 | Xdh129&#39;s Hexo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="作业,算法设计,开发">
+    <meta name="description" content="最大子段和 给定n个整数（可能为负数）组成的序列a[1],a[2],a[3],…,a[n]，求该序列如a[i]+a[i+1]+…+a[j]的子段和的最大值。当所给的整数均为负数时，定义子段和为0。  要求算法的时间复杂度为O(n)。 输入格式: 输入有两行： 第一行是n值（1&amp;lt;=n&amp;lt;=10000)； 第二行是n个整数。 输出格式: 输出最大子段和。 输入样例: 在这里给出一组输入。例如">
+<meta name="keywords" content="作业,算法设计,开发">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PTA拼题网作业-算法_动态规划-1207">
+<meta property="og:url" content="https:&#x2F;&#x2F;xdh129.github.io&#x2F;2020&#x2F;12&#x2F;07&#x2F;Algorithm-Learning-OnLine-Homework-201207&#x2F;index.html">
+<meta property="og:site_name" content="Xdh129&#39;s Hexo">
+<meta property="og:description" content="最大子段和 给定n个整数（可能为负数）组成的序列a[1],a[2],a[3],…,a[n]，求该序列如a[i]+a[i+1]+…+a[j]的子段和的最大值。当所给的整数均为负数时，定义子段和为0。  要求算法的时间复杂度为O(n)。 输入格式: 输入有两行： 第一行是n值（1&amp;lt;=n&amp;lt;=10000)； 第二行是n个整数。 输出格式: 输出最大子段和。 输入样例: 在这里给出一组输入。例如">
+<meta property="og:locale" content="cn">
+<meta property="og:image" content="https:&#x2F;&#x2F;xdh129.github.io&#x2F;2020&#x2F;12&#x2F;07&#x2F;Algorithm-Learning-OnLine-Homework-201207&#x2F;2020-12-22_104330.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;xdh129.github.io&#x2F;2020&#x2F;12&#x2F;07&#x2F;Algorithm-Learning-OnLine-Homework-201207&#x2F;2020-12-22_102118.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;xdh129.github.io&#x2F;2020&#x2F;12&#x2F;07&#x2F;Algorithm-Learning-OnLine-Homework-201207&#x2F;2020-12-22_103556.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;xdh129.github.io&#x2F;2020&#x2F;12&#x2F;07&#x2F;Algorithm-Learning-OnLine-Homework-201207&#x2F;2020-12-22_113100.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;xdh129.github.io&#x2F;2020&#x2F;12&#x2F;07&#x2F;Algorithm-Learning-OnLine-Homework-201207&#x2F;2020-12-22_112505.png">
+<meta property="og:updated_time" content="2020-12-07T11:45:02.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;xdh129.github.io&#x2F;2020&#x2F;12&#x2F;07&#x2F;Algorithm-Learning-OnLine-Homework-201207&#x2F;2020-12-22_104330.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="Xdh129&#39;s Hexo" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Xdh129</h5>
+          <a href="mailto:xdh.129@gmail.com" target="_blank" rel="noopener" title="xdh.129@gmail.com" class="mail">xdh.129@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Xdh129" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://weibo.com/2961269250" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-link"></i>
+                测试
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">PTA拼题网作业-算法_动态规划-1207</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">PTA拼题网作业-算法_动态规划-1207</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2020-12-07T11:45:02.000Z" itemprop="datePublished" class="page-time">
+  2020-12-07
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E4%BD%9C%E4%B8%9A/">作业</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#最大子段和"><span class="post-toc-number">1.</span> <span class="post-toc-text">最大子段和</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#程序代码"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">程序代码:</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#运行截图"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">运行截图:</span></a></li></ol></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#0-1背包"><span class="post-toc-number">2.</span> <span class="post-toc-text">0-1背包</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#程序代码-1"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">程序代码:</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#运行截图-1"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">运行截图:</span></a></li></ol></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#回文串问题"><span class="post-toc-number">3.</span> <span class="post-toc-text">回文串问题</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#程序代码-2"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">程序代码:</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#运行截图-2"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">运行截图:</span></a></li></ol></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#矩阵链相乘问题"><span class="post-toc-number">4.</span> <span class="post-toc-text">矩阵链相乘问题</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#程序代码-3"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">程序代码:</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#运行截图-3"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">运行截图:</span></a></li></ol></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#寻宝"><span class="post-toc-number">5.</span> <span class="post-toc-text">寻宝</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#程序代码-4"><span class="post-toc-number">5.1.</span> <span class="post-toc-text">程序代码:</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#运行截图-4"><span class="post-toc-number">5.2.</span> <span class="post-toc-text">运行截图:</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-Algorithm-Learning-OnLine-Homework-201207"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">PTA拼题网作业-算法_动态规划-1207</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2020-12-07 19:45:02" datetime="2020-12-07T11:45:02.000Z"  itemprop="datePublished">2020-12-07</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E4%BD%9C%E4%B8%9A/">作业</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h4 id="最大子段和"><a href="#最大子段和" class="headerlink" title="最大子段和"></a>最大子段和</h4><ol>
+<li>给定n个整数（可能为负数）组成的序列a[1],a[2],a[3],…,a[n]，求该序列如a[i]+a[i+1]+…+a[j]的子段和的最大值。当所给的整数均为负数时，定义子段和为0。</li>
+</ol>
+<p>要求算法的时间复杂度为O(n)。</p>
+<p>输入格式:</p>
+<p>输入有两行：</p>
+<p>第一行是n值（1&lt;=n&lt;=10000)；</p>
+<p>第二行是n个整数。</p>
+<p>输出格式:</p>
+<p>输出最大子段和。</p>
+<p>输入样例:</p>
+<p>在这里给出一组输入。例如：</p>
+<blockquote>
+<p>6<br>-2 11 -4 13 -5 -2 </p>
+</blockquote>
+<p>输出样例:</p>
+<p>在这里给出相应的输出。例如：</p>
+<blockquote>
+<p>20 </p>
+</blockquote>
+<h5 id="程序代码"><a href="#程序代码" class="headerlink" title="程序代码:"></a>程序代码:</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n, max = <span class="number">0</span>, current = <span class="number">0</span>;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;n);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> k = <span class="number">0</span>; k &lt; n; ++k) &#123;</span><br><span class="line">        <span class="keyword">int</span> temp;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;temp);</span><br><span class="line">        current += temp;</span><br><span class="line">        <span class="keyword">if</span> (current &gt; max) &#123;</span><br><span class="line">            max = current;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (current &lt; <span class="number">0</span>) &#123;</span><br><span class="line">            current = <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, max);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="运行截图"><a href="#运行截图" class="headerlink" title="运行截图:"></a>运行截图:</h5><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="2020-12-22_104330.png" alt="运行截图" title="">
+                </div>
+                <div class="image-caption">运行截图</div>
+            </figure> 
+
+<br/>
+
+<h4 id="0-1背包"><a href="#0-1背包" class="headerlink" title="0-1背包"></a>0-1背包</h4><ol start="2">
+<li>给定n(n&lt;=100)种物品和一个背包。物品i的重量是wi，价值为vi，背包的容量为C(C&lt;=1000)。问:应如何选择装入背包中的物品，使得装入背包中物品的总价值最大? 在选择装入背包的物品时，对每种物品i只有两个选择：装入或不装入。不能将物品i装入多次，也不能只装入部分物品i。</li>
+</ol>
+<p>输入格式:</p>
+<p>共有n+1行输入： 第一行为n值和c值，表示n件物品和背包容量c； 接下来的n行，每行有两个数据，分别表示第i(1≤i≤n)件物品的重量和价值。</p>
+<p>输出格式:</p>
+<p>输出装入背包中物品的最大总价值。</p>
+<p>输入样例:</p>
+<p>在这里给出一组输入。例如：</p>
+<blockquote>
+<p>5 10<br>2 6<br>2 3<br>6 5<br>5 4<br>4 6 </p>
+</blockquote>
+<p>输出样例:</p>
+<p>在这里给出相应的输出。例如：</p>
+<blockquote>
+<p>15 </p>
+</blockquote>
+<h5 id="程序代码-1"><a href="#程序代码-1" class="headerlink" title="程序代码:"></a>程序代码:</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> N 105</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n, c;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d %d"</span>, &amp;n, &amp;c);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> itemWeights[N], itemValues[N], dp[N][<span class="number">10</span> * N], temp[N] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> k = <span class="number">1</span>; k &lt;= n; ++k) &#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%d %d"</span>, &amp;itemWeights[k], &amp;itemValues[k]);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> k = <span class="number">0</span>; k &lt;= c; ++k) &#123;</span><br><span class="line">        <span class="keyword">if</span> (k &lt; itemWeights[n]) &#123;</span><br><span class="line">            dp[n][k] = <span class="number">0</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            dp[n][k] = itemValues[n];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = n - <span class="number">1</span>; i &gt;= <span class="number">1</span>; --i) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt;= c; ++j) &#123;</span><br><span class="line">            <span class="keyword">if</span> (j &gt;= itemWeights[i] &amp;&amp; dp[i + <span class="number">1</span>][j] &lt; dp[i + <span class="number">1</span>][j - itemWeights[i]] + itemValues[i]) &#123;</span><br><span class="line">                dp[i][j] = dp[i + <span class="number">1</span>][j - itemWeights[i]] + itemValues[i];</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                dp[i][j] = dp[i + <span class="number">1</span>][j];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> cv = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> k = <span class="number">1</span>; k &lt;= n - <span class="number">1</span>; ++k) &#123;</span><br><span class="line">        <span class="keyword">if</span> (dp[k][c] != dp[k + <span class="number">1</span>][c]) &#123;</span><br><span class="line">            temp[k] = <span class="number">1</span>;</span><br><span class="line">            cv += itemValues[k];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (dp[<span class="number">1</span>][c] &gt;= cv) &#123;</span><br><span class="line">        temp[n] = <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, dp[<span class="number">1</span>][c]);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="运行截图-1"><a href="#运行截图-1" class="headerlink" title="运行截图:"></a>运行截图:</h5><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="2020-12-22_102118.png" alt="运行截图" title="">
+                </div>
+                <div class="image-caption">运行截图</div>
+            </figure> 
+
+<br/>
+
+<h4 id="回文串问题"><a href="#回文串问题" class="headerlink" title="回文串问题"></a>回文串问题</h4><ol start="3">
+<li>一个字符串，如果从左到右读和从右到左读是完全一样的，比如”aba”，我们称其为回文串。现在给你一个字符串，可在任意位置添加字符，求最少添加几个字符，才能使其变成一个回文串。</li>
+</ol>
+<p>输入格式:</p>
+<p>任意给定的一个字符串，其长度不超过1000.</p>
+<p>输出格式:</p>
+<p>能变成回文串所需添加的最少字符数。</p>
+<p>输入样例:</p>
+<p>在这里给出一组输入。例如：</p>
+<blockquote>
+<p>Ab3bd </p>
+</blockquote>
+<blockquote>
+<p>Abb </p>
+</blockquote>
+<p>输出样例:</p>
+<p>在这里给出相应的输出。例如：</p>
+<blockquote>
+<p>2 </p>
+</blockquote>
+<blockquote>
+<p>1 </p>
+</blockquote>
+<h5 id="程序代码-2"><a href="#程序代码-2" class="headerlink" title="程序代码:"></a>程序代码:</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;memory.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> N 1001</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> max(a, b) ((a)&gt;(b)?(a):(b))</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">char</span> str[N];</span><br><span class="line"><span class="keyword">int</span> dp[N][N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">memset</span>(dp, <span class="number">0</span>, <span class="keyword">sizeof</span>(dp));</span><br><span class="line">    <span class="keyword">char</span> str1[<span class="number">1001</span>];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (gets(str) != <span class="literal">NULL</span>) &#123;</span><br><span class="line">        <span class="keyword">int</span> len = <span class="built_in">strlen</span>(str);</span><br><span class="line">        <span class="keyword">int</span> temp = len - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> k = <span class="number">0</span>; k &lt; len; ++k) &#123;</span><br><span class="line">            str1[temp--] = str[k];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= len; ++i) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= len; ++j)</span><br><span class="line">                <span class="keyword">if</span> (str[i - <span class="number">1</span>] == str1[j - <span class="number">1</span>]) &#123;</span><br><span class="line">                    dp[i][j] = max(dp[i][j], dp[i - <span class="number">1</span>][j - <span class="number">1</span>] + <span class="number">1</span>);</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    dp[i][j] = max(dp[i - <span class="number">1</span>][j], dp[i][j - <span class="number">1</span>]);</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, len - dp[len][len]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="运行截图-2"><a href="#运行截图-2" class="headerlink" title="运行截图:"></a>运行截图:</h5><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="2020-12-22_103556.png" alt="运行截图" title="">
+                </div>
+                <div class="image-caption">运行截图</div>
+            </figure> 
+
+<br/>
+
+<h4 id="矩阵链相乘问题"><a href="#矩阵链相乘问题" class="headerlink" title="矩阵链相乘问题"></a>矩阵链相乘问题</h4><p>4.矩阵的乘法定义如下：设A是m×p的矩阵，B是p×n的矩阵，则A与B的乘积为m×n的矩阵，记作C=AB，其中，矩阵C中的第i行第j列元素c​ij​​可以表示为：c​ij​​=Σ​k=1​p​​a​ik​​×b​kj​​=a​i1​​b​1j​​+a​i2​​b​2j​​+⋯+a​ip​​b​pj​​.</p>
+<p>当多个矩阵相乘时，采用不同的计算顺序所需的乘法次数不相同。例如，A是50×10的矩阵，B是10×20的矩阵，C是20×5的矩阵， 计算ABC有两种方式：(AB)C和A(BC)，前一种需要15000次乘法计算，后一种则只需3500次。</p>
+<p>设A​1​​,A​2​​,…,A​n​​为矩阵序列，A​i​​是阶为P​i−1​​∗P​i​​的矩阵(1≤i≤n)。试确定矩阵的乘法顺序，使得计算A​1​​A​2​​…A​n​​过程中元素相乘的总次数最少。</p>
+<p>输入格式:</p>
+<p>每个输入文件为一个测试用例，每个测试用例的第一行给出一个正整数n(1≤n≤100)，表示一共有n个矩阵A​1​​,A​2​​,…,A​n​​，第二行给出n+1个整数P​0​​,P​1​​…P​n​​，以空格分隔，其中1≤P​i​​≤100(0≤i≤n)，第i个矩阵A​i​​是阶为P​i−1​​∗P​i​​的矩阵。</p>
+<p>输出格式:</p>
+<p>获得上述矩阵的乘积，所需的最少乘法次数。</p>
+<p>输入样例:</p>
+<p>在这里给出一组输入。例如：</p>
+<blockquote>
+<p>5<br>30 35 15 5 10 20 </p>
+</blockquote>
+<p>输出样例:</p>
+<p>在这里给出相应的输出。例如：</p>
+<blockquote>
+<p>11875 </p>
+</blockquote>
+<h5 id="程序代码-3"><a href="#程序代码-3" class="headerlink" title="程序代码:"></a>程序代码:</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> N 2001</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> dp[N][N];</span><br><span class="line"><span class="keyword">int</span> arr[N + <span class="number">1</span>][<span class="number">2</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;n);</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;arr[<span class="number">1</span>][<span class="number">0</span>]);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> k = <span class="number">1</span>; k &lt;= n; ++k) &#123;</span><br><span class="line">        <span class="keyword">if</span> (k &gt; <span class="number">1</span>) &#123;</span><br><span class="line">            arr[k][<span class="number">0</span>] = arr[k - <span class="number">1</span>][<span class="number">1</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;arr[k][<span class="number">1</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = n; i &gt;= <span class="number">1</span>; --i) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = i + <span class="number">1</span>; j &lt;= n; ++j) &#123;</span><br><span class="line">            <span class="keyword">if</span> (j == i + <span class="number">1</span>) &#123;</span><br><span class="line">                dp[i][j] = arr[i][<span class="number">0</span>] * arr[i][<span class="number">1</span>] * arr[j][<span class="number">1</span>];</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> k = i; k &lt; j; ++k) &#123;</span><br><span class="line">                <span class="keyword">int</span> num = dp[k + <span class="number">1</span>][j] + dp[i][k] + arr[i][<span class="number">0</span>] * arr[k][<span class="number">1</span>] * arr[j][<span class="number">1</span>];</span><br><span class="line">                <span class="keyword">if</span> (k == i || num &lt; dp[i][j]) &#123;</span><br><span class="line">                    dp[i][j] = num;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, dp[<span class="number">1</span>][n]);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="运行截图-3"><a href="#运行截图-3" class="headerlink" title="运行截图:"></a>运行截图:</h5><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="2020-12-22_113100.png" alt="运行截图" title="">
+                </div>
+                <div class="image-caption">运行截图</div>
+            </figure> 
+
+<br/>
+
+<h4 id="寻宝"><a href="#寻宝" class="headerlink" title="寻宝"></a>寻宝</h4><ol start="5">
+<li>小明有一张藏宝图，上面有m*n个房间，每个房间里面都有一个有一定价值的宝物，小明只能从左上角的房间进入收集宝物，且每次只能向右边或向下边的房间继续寻宝，最终只能从最右下的房间出来。请你帮小明计算下他最多可以收集到多少价值的宝物？</li>
+</ol>
+<p>输入格式:</p>
+<p>输入第一行给出两个正整数m,n(1=&lt;m,n&lt;=2000)，随后给出m行数据，每行都包括n个正整数，中间用空格分割。</p>
+<p>输出格式:</p>
+<p>输出收集到的最大价值v，题目保证v&lt;10^9。</p>
+<p>输入样例:</p>
+<blockquote>
+<p>4 4<br>1 18 9 3<br>7 10 6 12<br>5 13 4 15<br>2 11 8 16 </p>
+</blockquote>
+<p>输出样例:</p>
+<blockquote>
+<p>78 </p>
+</blockquote>
+<h5 id="程序代码-4"><a href="#程序代码-4" class="headerlink" title="程序代码:"></a>程序代码:</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> N 2001</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> dp[N][N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> m, n;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d %d"</span>, &amp;m, &amp;n);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= m; ++i) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= n; ++j) &#123;</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;dp[i][j]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= m; ++i) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= n; ++j) &#123;</span><br><span class="line">            <span class="keyword">if</span> (dp[i - <span class="number">1</span>][j] &gt; dp[i][j - <span class="number">1</span>]) &#123;</span><br><span class="line">                dp[i][j] = dp[i][j] + dp[i - <span class="number">1</span>][j];</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                dp[i][j] = dp[i][j] + dp[i][j - <span class="number">1</span>];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, dp[m][n]);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="运行截图-4"><a href="#运行截图-4" class="headerlink" title="运行截图:"></a>运行截图:</h5><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="2020-12-22_112505.png" alt="运行截图" title="">
+                </div>
+                <div class="image-caption">运行截图</div>
+            </figure> 
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2020-12-07T11:45:02.000Z" itemprop="dateUpdated">2020-12-07 19:45:02</time>
+</span><br>
+
+
+        
+        链接：<a href="/2020/12/07/Algorithm-Learning-OnLine-Homework-201207/" target="_blank" rel="external">https://xdh129.github.io/2020/12/07/Algorithm-Learning-OnLine-Homework-201207/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://xdh129.github.io">
+            <img src="/img/avatar.jpg" alt="Xdh129">
+            Xdh129
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BD%9C%E4%B8%9A/" rel="tag">作业</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%BC%80%E5%8F%91/" rel="tag">开发</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1/" rel="tag">算法设计</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://xdh129.github.io/2020/12/07/Algorithm-Learning-OnLine-Homework-201207/&title=《PTA拼题网作业-算法_动态规划-1207》 — Xdh129's Hexo&pic=https://xdh129.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://xdh129.github.io/2020/12/07/Algorithm-Learning-OnLine-Homework-201207/&title=《PTA拼题网作业-算法_动态规划-1207》 — Xdh129's Hexo&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://xdh129.github.io/2020/12/07/Algorithm-Learning-OnLine-Homework-201207/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《PTA拼题网作业-算法_动态规划-1207》 — Xdh129's Hexo&url=https://xdh129.github.io/2020/12/07/Algorithm-Learning-OnLine-Homework-201207/&via=https://xdh129.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://xdh129.github.io/2020/12/07/Algorithm-Learning-OnLine-Homework-201207/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2020/12/07/Algorithm-Learning-Homework-201207/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">算法设计实验6-动态规划算法-1207</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Xdh129 &copy; 2013 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://xdh129.github.io/2020/12/07/Algorithm-Learning-OnLine-Homework-201207/&title=《PTA拼题网作业-算法_动态规划-1207》 — Xdh129's Hexo&pic=https://xdh129.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://xdh129.github.io/2020/12/07/Algorithm-Learning-OnLine-Homework-201207/&title=《PTA拼题网作业-算法_动态规划-1207》 — Xdh129's Hexo&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://xdh129.github.io/2020/12/07/Algorithm-Learning-OnLine-Homework-201207/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《PTA拼题网作业-算法_动态规划-1207》 — Xdh129's Hexo&url=https://xdh129.github.io/2020/12/07/Algorithm-Learning-OnLine-Homework-201207/&via=https://xdh129.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://xdh129.github.io/2020/12/07/Algorithm-Learning-OnLine-Homework-201207/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACwklEQVR42u3awW7bMBAE0Pz/T7dATwUayzO7ZOrD0ymQFYWPAUh6dr++4uvXn+v507+fye+8+vTf+89jWF14eHh4o6G/up6H8vxMMjXJGJ4n680U4OHh4V3jPW8Gz0t2zp5NRPLOl/fx8PDw/isvv5MPNJmCdiLw8PDwPoeXDDRfytvh4uHh4X0aL//y3y73zxtGEjHkT+Lh4eH9DK8tgH3Czxfre3h4eHiHyk55IWpWu28P8dEI8fDw8C7wkuPy2VatTWNWWwzDw8PDu8FrF+I2vNg3BORxwzfvwcPDw7vAy8v2+UE5eTLfGNoAN6rv4eHh4V3jteX/zWG6bckq/hl4eHh4F3htI1QbahQNUvHkts0NeHh4eKd4bUjahgK3k9U3v4uHh4d3jVdXzNbstgUhDz7qHQYPDw9vxDtb7podtdviWRSO4OHh4f04bxbvbg7N+WaQjBMPDw/vBm92RJ5tJ0nksZm+ooEADw8Pb8Frv+RvjsXJQTl/Q/RmPDw8vAu82aDbOPVUODuLPPDw8PBu8DYNUklRrYgM4i1hiMTDw8Nb8/Li1qzwv2lBmDU64OHh4f0kLy9fzSKGdsNop++bt+Hh4eFd4OVlrfZo2xa6TkUS9f6Dh4eHN+LNgoO8ZardVNqQIuqJwMPDw7vAy6OHdolvkcOusefvDXh4eHhHeZs/PCvn72H1ER8PDw/vKG9T+koO5Xl5bF9ae5NV4+Hh4R3ltUHAfkFvy2DDnjI8PDy8o7x7gcKNhtR6PHh4eHgXeLPGgmSrmG0zbQktj3fx8PDwzvJmm0HeDjULYdtg4uXb8PDw8K7x2uU7X5o3W8iBflQ8PDy8D+DlRbJNuWsWYbxpt8LDw8P7cd6mKSofUDJldRiBh4eHd4HXviIfaNS/UB7WiyM4Hh4e3gVeWwDL49p8S8ifP9w0gIeHh9fxfgM6v0EFAlfVvwAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)一颗赛艇!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
